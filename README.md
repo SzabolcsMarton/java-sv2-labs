@@ -1,1 +1,1 @@
-# java-sv2-labs
+A Struktura váltás 2.0 tananyaghoz tartozó feladataim.
