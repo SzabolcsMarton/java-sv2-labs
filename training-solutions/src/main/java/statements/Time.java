@@ -12,7 +12,7 @@ public class Time {
     }
 
     public  int getInMinutes() {
-        return hours * 60;
+        return hours * 60 + minutes;
     }
 
     public int getInSeconds(){
