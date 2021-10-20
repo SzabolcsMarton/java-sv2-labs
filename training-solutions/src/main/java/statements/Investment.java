@@ -20,8 +20,10 @@ public class Investment {
     }
 
     public double close(int days) {
-        double total = getFund() + getYield(days) - (1 - (cost / 100));
+        double total = getFund() + getYield(days) * (1 - (cost / 100));
+        double pay = active ? total : 0.00;
         active = false;
-        return active ? total : 0.00;
+        return pay;
+
     }
 }
