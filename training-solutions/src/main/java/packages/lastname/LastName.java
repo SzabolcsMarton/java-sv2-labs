@@ -1,9 +1,9 @@
-package packages.lastName;
+package packages.lastname;
 
-public class lastName {
+public class LastName {
     private String lastName;
 
-    public lastName(String lastName) {
+    public LastName(String lastName) {
         this.lastName = lastName;
     }
 

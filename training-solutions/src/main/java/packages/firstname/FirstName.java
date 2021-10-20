@@ -1,4 +1,4 @@
-package packages.firstName;
+package packages.firstname;
 
 public class FirstName {
     private String firstName;
