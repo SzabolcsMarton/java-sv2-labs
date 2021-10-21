@@ -18,7 +18,7 @@ public class IntroControl {
         }
     }
 
-    public  String GreetingToJoe(String name) {
+    public  String greetingToJoe(String name) {
         if (name.equals("Joe")) {
             return "Hello Joe!";
         }else {
@@ -35,8 +35,8 @@ public class IntroControl {
     }
 
     public int calculateConsumtion(int prev, int next) {
-        if (prev >= next) {
-            return prev - next;
+        if (prev <= next) {
+            return next - prev;
         }else {
             return 10_000 - prev + next;
         }
