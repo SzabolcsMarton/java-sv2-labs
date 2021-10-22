@@ -23,7 +23,7 @@ public class ArrayMain {
             sixBooleans[i] = !sixBooleans[ i - 1 ];
         }
         for ( boolean j: sixBooleans) {
-            System.out.print(j + ", ");
+            System.out.print(j + " ");
         }
     }
 }
