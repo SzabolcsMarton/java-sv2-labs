@@ -14,7 +14,7 @@ public class ArrayMain {
 //        }
 //
 //        for (int j : powOfTwoo) {
-//            System.out.print(j + ", ");
+//            System.out.print(j + " ");
 //        }
 
         boolean[] sixBooleans = new boolean[6];
