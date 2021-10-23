@@ -18,7 +18,22 @@ public class ArraysMain {
         return Arrays.deepToString(multiplicTable);
     }
 
+    public boolean sameTempValues(double[] day, double[] otherDay) {
+        return Arrays.equals(day,otherDay);
+    }
 
+    public int min(int a, int b){
+        return a > b ? b : a;
+    }
+
+    public boolean sameTempValuesDaylight(double[] day, double[] otherday) {
+        int hoursToCheck = min(day.length, otherday.length);
+        double[] rangeDay = Arrays.copyOfRange(day,0, hoursToCheck);
+        double[] rangeOtherday = Arrays.copyOfRange(otherday,0, hoursToCheck);
+
+        return Arrays.equals(rangeDay, otherday);
+
+    }
 
 
     public static void main(String[] args) {
