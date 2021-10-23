@@ -30,10 +30,18 @@ public class ArraysMain {
         int hoursToCheck = min(day.length, otherday.length);
         double[] rangeDay = Arrays.copyOfRange(day,0, hoursToCheck);
         double[] rangeOtherday = Arrays.copyOfRange(otherday,0, hoursToCheck);
-
         return Arrays.equals(rangeDay, otherday);
-
     }
+
+    public boolean wonLottery(int[] fortune, int[] player) {
+        Arrays.sort(fortune);
+        Arrays.sort(player);
+        return Arrays.equals(fortune, player);
+    }
+
+
+
+
 
 
     public static void main(String[] args) {
