@@ -2,9 +2,9 @@ package finalmodifier;
 
 public class CylinderCalculator {
     public double calculateVolume(double r, double h) {
-        return r * r * h * CircleCalculator.PI;
+        return r * r * CircleCalculator.PI * h;
     }
     public double CalculateSurfaceArea( double r, double h) {
-        return ( 2 * ( r * r) * CircleCalculator.PI ) + (2 * r * CircleCalculator.PI * h);
+        return ( 2 *  r * r * CircleCalculator.PI ) + (2 * r * CircleCalculator.PI * h);
     }
 }
