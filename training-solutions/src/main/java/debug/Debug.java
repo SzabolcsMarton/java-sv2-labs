@@ -20,8 +20,7 @@ public class Debug {
         int[] numbers = {3, 7, -2, 1, -4, 5};
         for (int i = 0; i < numbers.length; i++) {
             numbers[2] = 0;
-            numbers[2]++;
-            numbers[2]++;
+            numbers[2] += 2;
         }
         System.out.println(numbers[2]);
     }
