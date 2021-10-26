@@ -12,10 +12,9 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
         this.email = email;
     }
-
+    @Override
     public String toString(){
-        return "Person { Name: " + name + ", Date of Birth: " + dateOfBirth + ", Email: " + email+" }";
-
+        return "User { Name: " + name + ",   Date of Birth: " + dateOfBirth + ",   Email: " + email + " }";
     }
 
     public String getName() {
