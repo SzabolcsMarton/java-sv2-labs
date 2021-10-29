@@ -1,5 +1,7 @@
 package numbers;
 
+import java.util.Scanner;
+
 public class Percent {
     public double getValue(int number, int percent) {
         return number / (double)100 *percent;
@@ -16,8 +18,14 @@ public class Percent {
 
     public static void main(String[] args) {
         Percent percent = new Percent();
-        System.out.println(percent.getValue(200, 30));
-        System.out.println(percent.getBase(60,30));
-        System.out.println(percent.getPercent(60, 30));
+        Scanner scn = new Scanner(System.in);
+
+        System.out.println("Type in the first number:");
+        int firstNumber = scn.nextInt();
+        System.out.println("Type in the second number:");
+        int secondNumber = scn.nextInt();
+        System.out.println(percent.getValue(firstNumber, secondNumber));
+        System.out.println(percent.getBase(firstNumber, secondNumber));
+        System.out.println(percent.getPercent(firstNumber, secondNumber));
     }
 }
