@@ -18,4 +18,10 @@ public class Conversion {
         }
         return numberArray;
     }
+
+    public  int getFirstDecimal(double number){
+        int doubleToInt = (int) number;
+        int result = (int)((number - doubleToInt) * 10);
+        return result;
+    }
 }

@@ -10,6 +10,7 @@ public class ConversionMain {
         int[] numbers = {5, -14, 6, 2, 125, 354, 9738, 3};
         byte[] convertedNumbers = conversion.convertIntArrayToByteArray(numbers);
         System.out.println(Arrays.toString(convertedNumbers));
+        System.out.println(conversion.getFirstDecimal(15.2254));
 
 
     }
