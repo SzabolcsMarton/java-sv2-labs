@@ -10,7 +10,7 @@ public class Conversion {
     public byte[] convertIntArrayToByteArray(int[] randomNumbers){
         byte[] numberArray = new byte[randomNumbers.length];
         for (int i = 0;i < randomNumbers.length; i++){
-            if(numberArray[i] < 127 && numberArray[i] > 0){
+            if(randomNumbers[i] < 127 && randomNumbers[i] > 0){
                 numberArray[i] = (byte) randomNumbers[i];
             }else{
                 numberArray[i] = -1;
