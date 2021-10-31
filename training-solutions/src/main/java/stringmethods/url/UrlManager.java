@@ -16,19 +16,21 @@ public class UrlManager {
 
     }
 
-    public boolean hasProperty(String key) {
+    private boolean hasProperty(String key) {
         return query.contains(key );
     }
 
     public  String getProperty(String key){
-        String[] properties = query.split("&");
-        for (String splitedProperties: properties){
-            String[]splitedProp = splitedProperties.split("=");
-            if (key.equals(splitedProp[0])){
-                return splitedProp[1];
+        if (hasProperty(key)){
+            String[] properties = query.split("&");
+            for (String splitedProperties: properties){
+                String[]splitedProp = splitedProperties.split("=");
+                if (key.equals(splitedProp[0])){
+                    return splitedProp[1];
+                }
             }
         }
-        return null;
+       return null;
     }
 
     public String getProtocol() {
@@ -113,6 +115,7 @@ public class UrlManager {
         System.out.println(urlManager.getPort());
         System.out.println(urlManager.getPath());
         System.out.println(urlManager.hasProperty("origin"));
+        System.out.println(urlManager.getProperty("origin"));
         System.out.println(urlManager.hasProperty("format"));
         System.out.println(urlManager.getProperty("format"));
 
