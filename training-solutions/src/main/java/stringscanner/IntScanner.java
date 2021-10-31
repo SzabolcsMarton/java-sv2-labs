@@ -3,17 +3,23 @@ package stringscanner;
 import java.util.Scanner;
 
 public class IntScanner {
-    public String convertInts(String ints){
+    public String convertInts(String ints) {
+
         StringBuilder sb = new StringBuilder();
         Scanner scanner = new Scanner(ints).useDelimiter(";");
-             while (scanner.hasNextInt()) {
-                int number = scanner.nextInt();
-                if (number > 100) {
-                    sb.append(number);
-                    sb.append(", ");
-                }
+        while (scanner.hasNextInt()) {
+            int number = scanner.nextInt();
+            if (number > 100) {
+                sb.append(number);
+                sb.append(", ");
             }
-        return sb.toString();
+        }
+        String finalString = sb.toString();
+        if (finalString.length() == 0) {
+            return finalString;
+        }
+
+        return finalString.substring(0, finalString.length() - 2);
     }
 
 
