@@ -7,18 +7,19 @@ import java.util.List;
 
 public class Codes {
 
-    public String getCodesWithLetter(List<String> codes){
+    public String getCodesWithLetter(List<String> codes) {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < codes.size(); i++) {
             char c = codes.get(i).toCharArray()[0];
-            if ((i != 0) ) {
-                if(sb.length() > 0){
-                    sb.append(", ");
+            if (Character.isAlphabetic(c)) {
+                if ((i != 0)) {
+                    if (sb.length() > 0) {
+                        sb.append(", ");
+                    }
                 }
-
             }
-            if(Character.isAlphabetic(c)){
+            if (Character.isAlphabetic(c)) {
                 sb.append(codes.get(i));
             }
         }
