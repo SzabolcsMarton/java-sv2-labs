@@ -35,6 +35,9 @@ public class Codes {
         codesToWrite.add("g5f2feg");
         codesToWrite.add("45f2feg");
         codesToWrite.add("a5f2feg");
+        codesToWrite.add("a5f2feg");
+        codesToWrite.add("35f2feg");
+        codesToWrite.add("b5f2feg");
 
         System.out.println(codes.getCodesWithLetter(codesToWrite));
 
