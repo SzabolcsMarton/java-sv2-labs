@@ -46,42 +46,40 @@ public class MeetingRoomController {
         this.printMenu();
 
         System.out.println("\nKérem válasszon a felsorolt menüpontokból, \nmajd nyomja meg az enter-t:");
-        String  option = scnr.nextLine();
+        int option = scnr.nextInt();
+        scnr.nextLine();
 
-        if(option == ""){
-            System.out.println("Kérem a csak megadott menüpontokból válasszon!");
-            runMenu();
-        } else if (option == "1") {
+        if (option == 1) {
             readOffice();
-        } else if (option == "2") {
+        } else if (option == 2) {
             office.printNames();
             runMenu();
-        } else if (option == "3") {
+        } else if (option == 3) {
             office.printNamesReverse();
             runMenu();
-        } else if (option == "4") {
+        } else if (option == 4) {
             office.printEvenNames();
             runMenu();
-        } else if (option == "5") {
+        } else if (option == 5) {
             office.printAreas();
             runMenu();
-        } else if (option == "6") {
+        } else if (option == 6) {
             System.out.println("Adja meg a keresett tárgyaló nevét:");
             String nameOfRoom = scnr.nextLine();
             office.printMeetinRoomsWithName(nameOfRoom);
             runMenu();
-        } else if (option == "7") {
+        } else if (option == 7) {
             System.out.println("Adja meg a névtöredéket a keresett tárgyalóhoz:");
             String partOfName = scnr.nextLine();
             office.printMeetingRoomsContains(partOfName);
             runMenu();
-        } else if (option == "8") {
+        } else if (option == 8) {
             System.out.println("Adja meg a minimum területet:");
             int area = scnr.nextInt();
             scnr.nextLine();
             office.printAreasLargerThan(area);
             runMenu();
-        } else if (option == "9") {
+        } else if (option == 9) {
             System.out.println("Köszönjük hogy rendszerünket használta! \nViszontlátásra!");
         } else {
             System.out.println("Kérem a csak megadott menüpontokból válasszon!");
