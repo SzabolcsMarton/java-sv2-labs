@@ -5,10 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Office {
-    //private List<MeetingRoom> meetingRooms = new ArrayList<>();
-    //default items for helping development
-    private List<MeetingRoom> meetingRooms = new ArrayList(Arrays.asList(new MeetingRoom("sanyi", 5, 6),
-            new MeetingRoom("geza", 3, 7), new MeetingRoom("pityu", 7, 6)));
+    private List<MeetingRoom> meetingRooms = new ArrayList<>();
 
     public void addMeetingRoom(MeetingRoom meetingRoom) {
         meetingRooms.add(meetingRoom);
@@ -20,7 +17,6 @@ public class Office {
         for (MeetingRoom actual : meetingRooms) {
             System.out.println(actual.getName());
         }
-
     }
 
     public void printNamesReverse() {
@@ -28,7 +24,6 @@ public class Office {
         for (int i = meetingRooms.size() - 1; i >= 0; i--) {
             System.out.println(meetingRooms.get(i).getName());
         }
-
     }
 
     public void printEvenNames() {
@@ -51,7 +46,6 @@ public class Office {
                 System.out.println("A keresett terem: " + actual.getName() + ". A terem: " + actual.getLenght() +
                         "m hosszú, " + actual.getWidth() + "m széles, területe : " + actual.getArea() + "m2");
             }
-
         }
     }
 
@@ -61,7 +55,6 @@ public class Office {
                 System.out.println("A keresett terem: " + actual.getName() + ". A terem: " + actual.getLenght() +
                         "m hosszú, " + actual.getWidth() + "m széles, területe : " + actual.getArea() + "m2");
             }
-
         }
     }
 
@@ -73,6 +66,4 @@ public class Office {
             }
         }
     }
-
-
 }

@@ -14,7 +14,7 @@ public class MeetingRoom {
         this.width = width;
     }
 
-    public int getArea(){
+    public int getArea() {
         return lenght * width;
 
     }
