@@ -7,57 +7,72 @@ import java.util.List;
 public class Office {
     //private List<MeetingRoom> meetingRooms = new ArrayList<>();
     //default items for helping development
-    private List<MeetingRoom> meetingRooms = new ArrayList(Arrays.asList(new MeetingRoom("sanyi",5,6),
-            new MeetingRoom("geza",3,7),new MeetingRoom("pityu",7,6)));
+    private List<MeetingRoom> meetingRooms = new ArrayList(Arrays.asList(new MeetingRoom("sanyi", 5, 6),
+            new MeetingRoom("geza", 3, 7), new MeetingRoom("pityu", 7, 6)));
 
-    public void addMeetingRoom(MeetingRoom meetingRoom){
+    public void addMeetingRoom(MeetingRoom meetingRoom) {
         meetingRooms.add(meetingRoom);
     }
 
 
-    public void printNames(){
+    public void printNames() {
         System.out.println("Aktuális tárgyaló termek:");
-        for (MeetingRoom actual: meetingRooms){
+        for (MeetingRoom actual : meetingRooms) {
             System.out.println(actual.getName());
         }
 
     }
 
-    public void printNamesReverse(){
+    public void printNamesReverse() {
         System.out.println("Aktuális tárgyaló termek forditott sorrendben:");
-        for (int i = meetingRooms.size() - 1; i >= 0 ; i--){
+        for (int i = meetingRooms.size() - 1; i >= 0; i--) {
             System.out.println(meetingRooms.get(i).getName());
         }
 
     }
 
-    public void printEvenNames(){
+    public void printEvenNames() {
         System.out.println("Aktuális tárgyaló termek forditott sorrendben:");
-        for (int i = 1 ; i < meetingRooms.size(); i += 2){
+        for (int i = 1; i < meetingRooms.size(); i += 2) {
             System.out.println(meetingRooms.get(i).getName());
         }
     }
 
-    public void printAreas(){
-        for(MeetingRoom actual: meetingRooms){
+    public void printAreas() {
+        for (MeetingRoom actual : meetingRooms) {
             System.out.println("A(z) " + actual.getName() + " terem: " + actual.getLenght() +
                     "m hosszú, " + actual.getWidth() + "m széles, területe : " + actual.getArea() + "m2");
         }
     }
 
-    public void printMeetinRoomsWithName(String name){
-        for(MeetingRoom actual: meetingRooms){
-            if (name.equals(actual.getName())){
-                System.out.println("A keresett terem: \n" + actual.getName() + " terem: " + actual.getLenght() +
+    public void printMeetinRoomsWithName(String name) {
+        for (MeetingRoom actual : meetingRooms) {
+            if (name.equals(actual.getName())) {
+                System.out.println("A keresett terem: " + actual.getName() + ". A terem: " + actual.getLenght() +
                         "m hosszú, " + actual.getWidth() + "m széles, területe : " + actual.getArea() + "m2");
             }
 
         }
     }
 
-    public void printMeetingRoomsContains(String part){}
+    public void printMeetingRoomsContains(String part) {
+        for (MeetingRoom actual : meetingRooms) {
+            if (actual.getName().toLowerCase().contains(part.toLowerCase())) {
+                System.out.println("A keresett terem: " + actual.getName() + ". A terem: " + actual.getLenght() +
+                        "m hosszú, " + actual.getWidth() + "m széles, területe : " + actual.getArea() + "m2");
+            }
 
-    public void printAreasLargerThan(int area){}
+        }
+    }
+
+    public void printAreasLargerThan(int area) {
+        for (MeetingRoom actual : meetingRooms) {
+            if (area < actual.getArea()) {
+                System.out.println("A keresett terem: " + actual.getName() + ". A terem: " + actual.getLenght() +
+                        "m hosszú, " + actual.getWidth() + "m széles, területe : " + actual.getArea() + "m2");
+            }
+        }
+    }
 
 
 }
