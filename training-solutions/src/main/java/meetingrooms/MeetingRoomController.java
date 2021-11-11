@@ -10,6 +10,7 @@ public class MeetingRoomController {
         Scanner officeScan = new Scanner(System.in);
         System.out.println("Adja meg az új tárgyaló nevét:");
         String nameOfNewRoom = officeScan.nextLine();
+//
 
         System.out.println("Adja meg a terem hosszát:");
         int lenghtOfRoom = officeScan.nextInt();
@@ -19,7 +20,7 @@ public class MeetingRoomController {
         int widthOfRoom = officeScan.nextInt();
         officeScan.nextLine();
 
-        office.addMeetingRoom(new MeetingRoom(nameOfNewRoom, lenghtOfRoom, widthOfRoom));
+        office.addMeetingRoom(new MeetingRoom(nameOfNewRoom.trim(), lenghtOfRoom, widthOfRoom));
         System.out.println("Tárgyaló sikeressen rögzitve!");
         runMenu();
 
@@ -41,7 +42,6 @@ public class MeetingRoomController {
     }
 
     public void runMenu() {
-
         Scanner scnr = new Scanner(System.in);
         this.printMenu();
 
