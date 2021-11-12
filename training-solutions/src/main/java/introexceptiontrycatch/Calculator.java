@@ -12,7 +12,6 @@ public class Calculator {
         System.out.println("Adja meg az elso szamot:");
         try{
             firstNumber = Integer.parseInt(scnr.nextLine());
-            scnr.nextLine();
         }catch (NumberFormatException nfe){
             System.out.println("Nem szamot irt be!");
         }
@@ -20,7 +19,6 @@ public class Calculator {
         System.out.println("Adja meg az masodik szamot:");
         try{
             secondNumber = Integer.parseInt(scnr.nextLine());
-            scnr.nextLine();
         }catch (NumberFormatException nfe){
             System.out.println("Nem szamot irt be!");
         }
