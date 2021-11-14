@@ -21,10 +21,5 @@ public class Tank {
         }
     }
 
-    public static void main(String[] args) {
-        Tank tank = new Tank();
-        tank.modifyAngle(0);
-        tank.modifyAngle(-80);
-        System.out.println(tank.getAngle());
-    }
+
 }
