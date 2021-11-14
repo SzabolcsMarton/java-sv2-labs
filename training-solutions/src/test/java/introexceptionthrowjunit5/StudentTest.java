@@ -11,7 +11,7 @@ class StudentTest {
     void testAddCorrectNotes(){
         student.addNotes(3);
 
-        assertEquals(3,student.getNotes().get(1));
+        assertEquals(3,student.getNotes().get(0));
     }
 
     @Test
