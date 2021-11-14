@@ -8,6 +8,7 @@ import java.util.List;
 public class Holiday {
     public static void main(String[] args) {
         try{
+            //exeption after wrong path
             List<String> holidayStaff = Files.readAllLines(Paths.get("holiday.txt"));
             System.out.println(holidayStaff);
         }catch (IOException ioe){
