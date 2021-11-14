@@ -3,19 +3,17 @@ package meetingrooms;
 public class MeetingRoom {
 
     private String name;
-
-    private int lenght;
-
+    private int length;
     private int width;
 
     public MeetingRoom(String name, int lenght, int width) {
         this.name = name;
-        this.lenght = lenght;
+        this.length = lenght;
         this.width = width;
     }
 
     public int getArea() {
-        return lenght * width;
+        return length * width;
 
     }
 
@@ -28,11 +26,11 @@ public class MeetingRoom {
     }
 
     public int getLenght() {
-        return lenght;
+        return length;
     }
 
     public void setLenght(int lenght) {
-        this.lenght = lenght;
+        this.length = lenght;
     }
 
     public int getWidth() {
