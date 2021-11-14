@@ -13,7 +13,7 @@ public class Poem {
             linesOfPoem = Files.readAllLines(Paths.get("src/main/resources/poem.txt"));
 
         }catch (IOException ioe){
-            throw new IllegalStateException("Olvasasi hiba, a file nem talalhato!");
+            throw new IllegalStateException("Olvasasi hiba, a file nem talalhato!",ioe);
         }
         for (String line : linesOfPoem) {
             System.out.print(line.charAt(0));
