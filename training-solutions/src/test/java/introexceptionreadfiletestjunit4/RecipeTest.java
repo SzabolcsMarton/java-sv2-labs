@@ -22,4 +22,13 @@ public class RecipeTest {
         assertEquals(10,recipe.getIngredients().size());
     }
 
+    @Test
+    public void testAddIngredientsWronPath(){
+        Path path = Paths.get("src/test/resources/recipe_.txt");
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class,
+                ()-> recipe.addIngredients(path));
+        assertEquals("Olvasasi hiba!",exception.getMessage());
+    }
+
 }
