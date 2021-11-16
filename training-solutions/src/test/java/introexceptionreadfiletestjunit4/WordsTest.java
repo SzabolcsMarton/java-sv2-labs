@@ -1,11 +1,12 @@
 package introexceptionreadfiletestjunit4;
 
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 class WordsTest {
     private Words words = new Words();
