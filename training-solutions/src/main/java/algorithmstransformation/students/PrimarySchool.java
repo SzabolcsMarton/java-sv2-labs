@@ -1,4 +1,4 @@
-package algorithmstransformation.student;
+package algorithmstransformation.students;
 
 import java.util.ArrayList;
 import java.util.List;

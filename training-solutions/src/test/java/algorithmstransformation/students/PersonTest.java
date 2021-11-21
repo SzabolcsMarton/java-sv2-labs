@@ -1,4 +1,4 @@
-package algorithmstransformation.student;
+package algorithmstransformation.students;
 
 import org.junit.jupiter.api.Test;
 
