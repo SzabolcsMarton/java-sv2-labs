@@ -12,14 +12,14 @@ class FamilyTest {
     Family family;
 
     @BeforeEach
-     void init(){
-         family = new Family();
-         family.addFamilyMember(new FamilyMember("Toth Imre", 30));
-         family.addFamilyMember(new FamilyMember("Toth Bela", 35));
-         family.addFamilyMember(new FamilyMember("Toth Katalin", 42));
-         family.addFamilyMember(new FamilyMember("Kovacs Imre", 40));
-         family.addFamilyMember(new FamilyMember("Szabo Geza Imre", 28));
-         family.addFamilyMember(new FamilyMember("Imre Imre", 20));
+    void init() {
+        family = new Family();
+        family.addFamilyMember(new FamilyMember("Toth Imre", 30));
+        family.addFamilyMember(new FamilyMember("Toth Bela", 35));
+        family.addFamilyMember(new FamilyMember("Toth Katalin", 42));
+        family.addFamilyMember(new FamilyMember("Kovacs Imre", 40));
+        family.addFamilyMember(new FamilyMember("Szabo Geza Imre", 28));
+        family.addFamilyMember(new FamilyMember("Imre Imre", 20));
     }
 
     @Test
