@@ -9,10 +9,10 @@ public class Car {
 
     public Car(String brand, String type, int yearOfCreation) {
         if(brand == null || brand.isBlank()){
-            throw new IllegalArgumentException("Brand is missing!");
+            throw new IllegalArgumentException("Brand name cannot be empty!");
         }
         if(yearOfCreation > LocalDate.now().getYear()){
-            throw new IllegalArgumentException("Year of creation is not valid!");
+            throw new IllegalArgumentException("Year of production cannot be in the future!");
         }
         this.brand = brand;
         this.type = type;
