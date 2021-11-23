@@ -1,31 +1,16 @@
 package methodstructure.bmi;
 
 public class BodyMass {
+
+    public static final double LOWER_LIMIT = 18.5;
+    public static final double UPPER_LIMIT = 25.0;
+
     private double weight;
     private double height;
 
     public BodyMass(double weight, double height) {
         this.weight = weight;
         this.height = height;
-    }
-
-    public double getBodyMassIndex() {
-        return weight / Math.pow(height, 2.0);
-    }
-
-    public BmiCategory getBody() {
-        double index = getBodyMassIndex();
-        if (index < 18.5) {
-            return BmiCategory.UNDERWEIGHT;
-        } else if (index > 25) {
-            return BmiCategory.OVERWEIGHT;
-        } else {
-            return BmiCategory.NORMAL;
-        }
-    }
-
-    public boolean isThinnerThan(BodyMass other){
-        return this.getBodyMassIndex() < other.getBodyMassIndex();
     }
 
     public double getWeight() {
@@ -35,4 +20,26 @@ public class BodyMass {
     public double getHeight() {
         return height;
     }
+
+
+    public double getBodyMassIndex() {
+        return weight / (height * height);
+    }
+
+
+    public BmiCategory getBody() {
+        double bmi = getBodyMassIndex();
+        if (bmi < LOWER_LIMIT)
+            return BmiCategory.UNDERWEIGHT;
+        if (bmi > UPPER_LIMIT)
+            return BmiCategory.OVERWEIGHT;
+        return BmiCategory.NORMAL;
+    }
+
+
+    public boolean isThinnerThan(BodyMass other) {
+        return getBodyMassIndex() < other.getBodyMassIndex();
+    }
+
+
 }

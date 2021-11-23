@@ -2,6 +2,5 @@ package methodstructure.bmi;
 
 public enum BmiCategory {
 
-    UNDERWEIGHT, NORMAL, OVERWEIGHT
-
+    UNDERWEIGHT, OVERWEIGHT, NORMAL
 }
