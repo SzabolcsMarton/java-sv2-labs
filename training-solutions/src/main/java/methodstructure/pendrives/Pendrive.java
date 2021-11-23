@@ -6,6 +6,12 @@ public class Pendrive {
     private int capacity;
     private double price;
 
+    public Pendrive(String name, int capacity, double price) {
+        this.name = name;
+        this.capacity = capacity;
+        this.price = price;
+    }
+
     private double getPricePerCapacity(){
         return price / capacity;
     }
