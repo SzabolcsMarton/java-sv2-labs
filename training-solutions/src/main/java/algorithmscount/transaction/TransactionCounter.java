@@ -8,7 +8,7 @@ public class TransactionCounter {
         int counter = 0;
         for (Transaction actual : transactions){
             if(actual.getTransType() == TransactionType.CREDIT &&
-                    actual.getAmount() > amountLimit){
+                    actual.getAmount() < amountLimit){
                 counter++;
             }
         }
