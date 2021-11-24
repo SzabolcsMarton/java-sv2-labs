@@ -7,7 +7,7 @@ public class Tropper {
 
     public Tropper(String name) {
         if (isInValid(name)) {
-            throw new IllegalArgumentException("Name can not be empty");
+            throw new IllegalArgumentException("You have to give the Name");
         }
         this.name = name;
         this.position = new Position(0.0, 0.0);
