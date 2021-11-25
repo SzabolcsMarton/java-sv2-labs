@@ -3,8 +3,8 @@ package methodparam.marriage;
 import java.time.LocalDate;
 
 public class RegisterDate {
-    private String descrirption;
-    private LocalDate date;
+    private final String descrirption;
+    private final LocalDate date;
 
     public RegisterDate(String descrirption, LocalDate date) {
         this.descrirption = descrirption;
