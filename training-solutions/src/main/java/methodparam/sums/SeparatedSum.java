@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SeparatedSum {
 
-   private String readFile() {
+    public String readFile() {
         try {
             List<String> numberString = Files.readAllLines(Paths.get("src/main/resources/floatingnumbers.txt"));
             return numberString.get(0);
@@ -22,6 +22,7 @@ public class SeparatedSum {
         double sumNeg = 0;
 
         String[] numbersWithDot = floatingNumbers.replace(",", ".").split(";");
+
         for (String actual : numbersWithDot) {
             double parsedNumber = Double.parseDouble(actual);
             if (parsedNumber < 0) {
