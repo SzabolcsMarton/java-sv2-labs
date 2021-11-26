@@ -20,7 +20,6 @@ public class SeparatedSum {
     public SumResult sum(String floatingNumbers) {
         double sumPos = 0;
         double sumNeg = 0;
-        readFile();
 
         String[] numbersWithDot = floatingNumbers.replace(",", ".").split(";");
         for (String actual : numbersWithDot) {
