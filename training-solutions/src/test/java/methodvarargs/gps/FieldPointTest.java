@@ -16,7 +16,9 @@ class FieldPointTest {
         fieldPoint.setTimeOfLogging(logTime);
 
         assertEquals(logTime, fieldPoint.getTimeOfLogging());
-        assertEquals(10.2545, fieldPoint.getLatitude(), 0.00001);
+        assertEquals(10.2545, fieldPoint.getLatitude());
+        assertEquals(15.2565, fieldPoint.getLongitude());
+        assertEquals(time, fieldPoint.getTimeOfSetting());
     }
 
 }
