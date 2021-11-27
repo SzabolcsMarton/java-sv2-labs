@@ -12,7 +12,8 @@ class ClassFiveATest {
     void getTodayReferringStudentWithIntTest(){
         assertEquals("Han Solo", classFiveA.getTodayReferringStudent(4));
         assertEquals("Han Solo", classFiveA.getTodayReferringStudent("four"));
-        assertEquals("Han Solo", classFiveA.getTodayReferringStudent(Number.FOUR));
+        assertEquals("Han Solo", classFiveA.getTodayReferringStudent(Number.FOUR
+        ));
     }
 
 }
