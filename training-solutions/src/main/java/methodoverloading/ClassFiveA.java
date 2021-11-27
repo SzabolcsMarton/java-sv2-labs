@@ -14,7 +14,7 @@ public class ClassFiveA {
     }
 
     public String getTodayReferringStudent(Number number){
-        return studentsNames.get(number.getValue() - 10);
+        return studentsNames.get(number.getValue() - 1);
     }
 
     public String getTodayReferringStudent(String numberName){
