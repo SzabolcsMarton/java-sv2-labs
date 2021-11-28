@@ -9,7 +9,7 @@ public class SimpleDate {
 
     public void setDate(int year, int month, int day) {
         if (!isCorrect(year, month, day)) {
-            throw new IllegalArgumentException("Incorrect data" + year + ", " + month + ", " + ", " + day);
+            throw new IllegalArgumentException("Incorrect data " + year + ", " + month + ", "  + day);
         }
         this.year = year;
         this.month = month;
