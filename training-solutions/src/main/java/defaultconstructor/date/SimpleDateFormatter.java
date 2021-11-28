@@ -8,6 +8,10 @@ public class SimpleDateFormatter {
         this.defaultCountryCode = CountryCode.HU;
     }
 
+    public CountryCode getDefaultCountryCode() {
+        return defaultCountryCode;
+    }
+
     public String formatDateString(SimpleDate simpleDate){
         return formatDateStringByCountryCode(defaultCountryCode, simpleDate);
 
