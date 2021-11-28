@@ -25,6 +25,10 @@ public class SimpleTime {
         return (timeToMinute(this) - timeToMinute(time));
     }
 
+//    public int getDifference(SimpleTime time) {
+//        return (timeToMinute() - time.timeToMinutes();
+//    }
+
     public String toString(){
         return hours + " : " + minutes;
     }
