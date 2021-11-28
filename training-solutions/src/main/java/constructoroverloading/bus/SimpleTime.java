@@ -5,31 +5,29 @@ public class SimpleTime {
     private int hours;
     private int minutes;
 
-    public SimpleTime(int hours, int minutes){
+    public SimpleTime(int hours, int minutes) {
         this.hours = hours;
         this.minutes = minutes;
     }
-    public SimpleTime(int hours){
+
+    public SimpleTime(int hours) {
         this(hours, 0);
 
     }
-    public SimpleTime(SimpleTime time){
+
+    public SimpleTime(SimpleTime time) {
         this(time.hours, time.minutes);
     }
 
-    private int timeToMinute(SimpleTime time){
+    private int timeToMinute(SimpleTime time) {
         return time.getHours() * 60 + time.getMinutes();
     }
 
-    public int getDifference(SimpleTime time){
+    public int getDifference(SimpleTime time) {
         return (timeToMinute(this) - timeToMinute(time));
     }
 
-//    public int getDifference(SimpleTime time) {
-//        return (timeToMinute() - time.timeToMinutes();
-//    }
-
-    public String toString(){
+    public String toString() {
         return hours + " : " + minutes;
     }
 

@@ -7,11 +7,11 @@ public class BusTimeTable {
 
     private List<SimpleTime> timeTable;
 
-    public BusTimeTable(List<SimpleTime> timeTable){
+    public BusTimeTable(List<SimpleTime> timeTable) {
         this.timeTable = timeTable;
     }
 
-    public BusTimeTable(int firstHour, int lastHour, int everyMinute){
+    public BusTimeTable(int firstHour, int lastHour, int everyMinute) {
         List<SimpleTime> result = new ArrayList<>();
         for (int i = firstHour; i < lastHour; i++) {
             result.add(new SimpleTime(i, everyMinute));
@@ -23,9 +23,9 @@ public class BusTimeTable {
         return timeTable;
     }
 
-    public SimpleTime getNextBus(SimpleTime actual){
-        for (int i = 0; i < timeTable.size(); i++){
-            if(timeTable.get(i).getDifference(actual) >= 0 ){
+    public SimpleTime getNextBus(SimpleTime actual) {
+        for (int i = 0; i < timeTable.size(); i++) {
+            if (timeTable.get(i).getDifference(actual) >= 0) {
                 return timeTable.get(i);
             }
         }
