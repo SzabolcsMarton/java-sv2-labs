@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ChessTournament {
+
     private List<Team> teams;
 
     public ChessTournament() {
@@ -15,8 +16,8 @@ public class ChessTournament {
         return teams;
     }
 
-    public void addPlayersToTeams(List<Player> playersRegistrated){
-        for (int i = 0; i < teams.size() * 2; i++){
+    public void addPlayersToTeams(List<Player> playersRegistrated) {
+        for (int i = 0; i < teams.size() * 2; i++) {
             if (playersRegistrated.size() >= i + 1) {
                 if (i % 2 == 0) {
                     teams.get(i / 2).setPlayerOne(playersRegistrated.get(i));
