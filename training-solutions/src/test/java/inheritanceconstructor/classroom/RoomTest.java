@@ -14,4 +14,5 @@ class RoomTest {
         assertEquals("Foldszint", room.getLocation());
     }
 
+
 }
