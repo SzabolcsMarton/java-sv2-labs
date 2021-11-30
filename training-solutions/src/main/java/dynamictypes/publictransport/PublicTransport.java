@@ -7,7 +7,7 @@ public class PublicTransport {
 
     private List<PublickVehicle> vehiles = new ArrayList<>();
 
-    public void Vehicle(PublickVehicle vehicle){
+    public void addVehicle(PublickVehicle vehicle){
         vehiles.add(vehicle);
     }
 
