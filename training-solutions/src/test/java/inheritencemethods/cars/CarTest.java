@@ -16,7 +16,7 @@ class CarTest {
     }
 
     @Test
-    void createWithWrongTest(){
+    void createWithWrongTest() throws IllegalArgumentException{
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 ()-> new Car(7.0,50,40));
         assertEquals("Can not have more fuel than the capacity",exception.getMessage());
