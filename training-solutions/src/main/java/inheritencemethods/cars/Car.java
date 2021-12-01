@@ -19,7 +19,7 @@ public class Car {
     }
 
     private boolean hasEnoughFuel(int km){
-        return (fuel - km * fuelRate / 100) >= 0.0)
+        return ((fuel - km * fuelRate / 100) >= 0.0);
     }
 
     public void drive(int km){
