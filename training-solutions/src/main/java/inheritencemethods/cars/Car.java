@@ -24,7 +24,7 @@ public class Car {
 
     public void drive(int km){
         if(!hasEnoughFuel(km)){
-            throw new IllegalArgumentException("Fuel is not enough");
+            throw new IllegalStateException("Fuel is not enough");
         }
         fuel -= km * (fuelRate /100);
     }
