@@ -15,6 +15,6 @@ public class Employee extends Person {
     }
 
     public void raiseSalary(int percent){
-        salary = salary * (1 + percent);
+        this.salary += this.salary * (percent / 100.0);
     }
 }
