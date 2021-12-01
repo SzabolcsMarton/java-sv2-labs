@@ -26,11 +26,11 @@ public class Car {
         if(!hasEnoughFuel(km)){
             throw new IllegalStateException("Fuel is not enough");
         }
-        fuel -= km * (fuelRate /100);
+        fuel -= km * fuelRate /100;
     }
 
     public double calculateRefillAmount(){
-        return tankCapacity - fuel;
+        return this.tankCapacity - this.fuel;
     }
 
     public double getFuelRate() {

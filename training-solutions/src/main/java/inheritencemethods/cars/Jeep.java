@@ -42,4 +42,9 @@ public class Jeep extends Car {
     public double getExtraFuel() {
         return extraFuel;
     }
+
+    public static void main(String[] args) {
+        Jeep jeep = new Jeep(10.0, 30.0, 50.0, 40.0, 20.0);
+        System.out.println(jeep.calculateRefillAmount());
+    }
 }
