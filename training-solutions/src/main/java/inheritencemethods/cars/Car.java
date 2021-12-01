@@ -18,8 +18,12 @@ public class Car {
         this.fuel += fuel;
     }
 
+    private boolean hasEnoughFuel(int km){
+        return (fuel - km * fuelRate / 100) >= 0.0)
+    }
+
     public void drive(int km){
-        if((fuel - km * fuelRate / 100) >= 0.0){
+        if(!hasEnoughFuel(km)){
             throw new IllegalArgumentException("Fuel is not enough");
         }
         fuel -= km * (fuelRate /100);
