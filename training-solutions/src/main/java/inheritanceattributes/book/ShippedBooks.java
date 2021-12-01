@@ -14,6 +14,6 @@ public class ShippedBooks extends Book {
     }
     public String toString(){
         return getTitle() + ": " + price + " Ft, postakoltseg: " + shippingCost + " Ft";
-        //"Gyűrűk ura: 3000 Ft, postaköltség: 1200 Ft"
     }
+
 }
