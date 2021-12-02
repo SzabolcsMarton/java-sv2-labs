@@ -33,7 +33,7 @@ class ArcherTest {
     }
 
     @Test
-    void secondaryAttackTest() throws Exception {
+    void secondaryAttackTest()  {
         Random random = new Random(123);
         Archer offender = new Archer(new Point(0, 0), random);
         Character defender = new Archer(new Point(12, 0), random);
