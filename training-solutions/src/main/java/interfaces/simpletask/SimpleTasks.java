@@ -1,4 +1,4 @@
-package interfaces.simpleTask;
+package interfaces.simpletask;
 
 import java.util.List;
 
