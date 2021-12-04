@@ -13,7 +13,7 @@ public class Zoo {
         return animals.size();
     }
 
-    public int getNumberOfLegs(){
+    public int getNumberOfAllLegs(){
         int sum = 0;
         for(Animal actual : animals){
             sum += actual.getNumberOfLegs();
