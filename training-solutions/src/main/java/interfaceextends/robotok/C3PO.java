@@ -13,6 +13,14 @@ public class C3PO implements MovableRobot {
         this.position = position;
     }
 
+    public Point getPosition() {
+        return position;
+    }
+
+    public int getAngle() {
+        return angle;
+    }
+
     @Override
     public void moveTo(Point position) {
         walkTo(position);
