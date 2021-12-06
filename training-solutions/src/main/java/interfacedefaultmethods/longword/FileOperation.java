@@ -11,7 +11,7 @@ interface FileOperations {
         try {
             return Files.readAllLines(path);
         } catch (IOException ioe) {
-            throw new IllegalStateException("Can not read file", ioe);
+            throw new IllegalStateException("Can`t read file", ioe);
         }
     }
 
