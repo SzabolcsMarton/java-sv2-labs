@@ -1,6 +1,6 @@
 package interfacedefaultmethods.seat;
 
-public class SportCar implements Seat{
+public class SportsCar implements Seat{
 
     @Override
     public int getNumberOfSeats() {
