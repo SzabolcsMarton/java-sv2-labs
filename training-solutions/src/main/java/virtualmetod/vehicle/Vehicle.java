@@ -14,6 +14,10 @@ public class Vehicle {
         return vehicleWeight + PERSON_AVERAGE_WEIGHT;
     }
 
+    public int getVehicleWeight() {
+        return vehicleWeight;
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" +
