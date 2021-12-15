@@ -1,4 +1,14 @@
 package virtualmetod.grammar;
 
-public class Verb {
+public abstract class Verb {
+
+    protected String word;
+
+    public Verb(String word) {
+        this.word = word;
+    }
+
+    public String getWord() {
+        return word;
+    }
 }
