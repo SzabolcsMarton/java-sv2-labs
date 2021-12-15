@@ -2,7 +2,7 @@ package virtualmetod.vehicle;
 
 public class FerryBoat extends Vehicle{
 
-    public static final int MAX_CARRY_WEIGHT = 1500;
+    public static final int MAX_CARRY_WEIGHT = 2000;
 
     private Car car;
 
