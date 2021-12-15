@@ -2,7 +2,7 @@ package virtualmetod.vehicle;
 
 public class Car extends Vehicle {
 
-    private int numberOfPassenger;
+    protected int numberOfPassenger;
 
     public Car(int vehicleWeight, int numberOfPassenger) {
         super(vehicleWeight);
