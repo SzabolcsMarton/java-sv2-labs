@@ -4,7 +4,7 @@ public class CanCarryPassengerBehavior implements CanCarryPassengers{
 
     private int passengers;
 
-    private int maxPassengers;
+    private final int maxPassengers;
 
     public CanCarryPassengerBehavior(int maxPassengers) {
         this.maxPassengers = maxPassengers;

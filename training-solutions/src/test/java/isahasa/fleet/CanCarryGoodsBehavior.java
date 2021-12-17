@@ -4,7 +4,7 @@ public class CanCarryGoodsBehavior implements CanCarryGoods{
 
     private int cargoWeight;
 
-    private int maxCargoWeight;
+    private final int maxCargoWeight;
 
     public CanCarryGoodsBehavior(int maxCargoWeight) {
         this.maxCargoWeight = maxCargoWeight;
