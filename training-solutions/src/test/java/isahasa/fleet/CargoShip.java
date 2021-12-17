@@ -5,7 +5,7 @@ public class CargoShip implements Ship, CanCarryGoods {
     private final CanCarryGoods canCarryGoods;
 
     public CargoShip(int maxCargoWeight) {
-        canCarryGoods = new CanCarryGoodsBehavior(maxCargoWeight);
+        canCarryGoods = new CanCarryGoodsBehaviour(maxCargoWeight);
     }
 
     @Override

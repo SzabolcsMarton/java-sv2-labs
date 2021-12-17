@@ -5,7 +5,7 @@ public class Liner implements Ship,CanCarryPassengers{
     private final CanCarryPassengers canCarryPassengers;
 
     public Liner(int maxPassengers) {
-        this.canCarryPassengers = new CanCarryPassengerBehavior(maxPassengers);
+        this.canCarryPassengers = new CanCarryPassengersBehavior(maxPassengers);
     }
 
     @Override
