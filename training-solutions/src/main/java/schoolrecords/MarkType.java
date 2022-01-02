@@ -15,6 +15,7 @@ public enum MarkType {
         this.stringMarkType = stringMarkType;
     }
 
+
     public int getIntMarkType() {
         return intMarkType;
     }
