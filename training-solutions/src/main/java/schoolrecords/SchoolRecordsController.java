@@ -22,10 +22,9 @@ public class SchoolRecordsController {
     private void runMenu() {
         int option;
         do {
-            this.printMenu();
+            printMenu();
             System.out.println("\nKérem válasszon a felsorolt menüpontokból, \nmajd nyomja meg az enter-t:");
-            option = scanner.nextInt();
-            scanner.nextLine();
+            option = Integer.parseInt(scanner.nextLine());
             controll(option);
         } while (option != 11);
         System.out.println("\n Viszontlátásra!");
@@ -49,7 +48,7 @@ public class SchoolRecordsController {
                 try {
                     classRecords.addStudent(new Student(scanner.nextLine()));
                     System.out.println("Diak sikeresen eltárolva");
-                }catch (NullPointerException npe){
+                } catch (NullPointerException npe) {
                     throw new IllegalArgumentException("You must to give the name");
                 }
                 System.out.println();
@@ -66,15 +65,15 @@ public class SchoolRecordsController {
                 Student randomStudent = classRecords.repetition();
                 System.out.println("A felelő diák: " + randomStudent.getName());
                 System.out.println("Adja meg az érdemjegyet:");
-                System.out.println("(A, B, C ,D, F )");
-                String mark = scanner.nextLine();
+                System.out.println("(1, 2, 3, 4, 5)");
+                int mark = scanner.nextInt();
 
                 System.out.println("Adja meg a tanár nevét:");
                 String tutorName = scanner.nextLine();
                 System.out.println("Adja meg a tantárgy nevét:");
                 String subjectName = scanner.nextLine();
 
-                Mark markToAdd = new Mark(MarkType.valueOf(mark), getSubjectFromList(subjectName), getTutorFromList(tutorName));
+                Mark markToAdd = new Mark(findMarkType(mark), getSubjectFromList(subjectName), getTutorFromList(tutorName));
                 randomStudent.grading(markToAdd);
                 break;
 
@@ -103,12 +102,14 @@ public class SchoolRecordsController {
                     throw new IllegalArgumentException("Can not calculate average by subject, missing data", npe);
                 }
                 break;
+
             case 8:
                 List<StudyResultByName> studyResults = classRecords.listStudyResults();
                 for (StudyResultByName actual : studyResults) {
                     System.out.println(actual.toString());
                 }
                 break;
+
             case 9:
                 try {
                     System.out.println(getStudentFromUserInput().calculateAverage());
@@ -116,6 +117,7 @@ public class SchoolRecordsController {
                     throw new IllegalArgumentException("You need to provide the name", npe);
                 }
                 break;
+
             case 10:
                 try {
                     Student student = classRecords.findStudentByName(getStudentFromUserInput().getName());
@@ -128,6 +130,17 @@ public class SchoolRecordsController {
 
         }
 
+    }
+
+    private MarkType findMarkType(int i)
+    {
+        for(MarkType actual : MarkType.values())
+        {
+            if(actual.getIntMarkType() == i)
+                return actual;
+        }
+
+        return null;
     }
 
     private Subject getSubjectFromUserInput() {

@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class ClassRecords {
 
-    private String className;
-    private Random random;
+    private final String className;
+    private final Random random;
     private final List<Student> students = new ArrayList<>();
 
     public ClassRecords(String className, Random random) {

@@ -5,7 +5,7 @@ import java.util.List;
 public class Tutor {
 
     private final String name;
-    private List<Subject> taughtSubjects;
+    private final List<Subject> taughtSubjects;
 
     public Tutor(String name, List<Subject> taughtSubjects) {
         this.name = name;
@@ -25,5 +25,5 @@ public class Tutor {
         return false;
     }
 
-    
+
 }

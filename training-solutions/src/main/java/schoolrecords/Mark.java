@@ -22,6 +22,8 @@ public class Mark {
         }
     }
 
+
+
     public MarkType getMarkType() {
         return markType;
     }
