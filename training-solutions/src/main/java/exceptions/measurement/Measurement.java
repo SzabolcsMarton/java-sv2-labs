@@ -3,6 +3,7 @@ package exceptions.measurement;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +29,15 @@ public class Measurement {
 
     private boolean validateWholeLine(String line) {
         String[] lineParts = line.split(",");
-        return validateLineParts(lineParts) &&
-                validateStringToNumber(lineParts[0]) &&
-                validateMeasuredValue(lineParts[1]) &&
-                validateName(lineParts[2]);
+        try {
+            return validateLineParts(lineParts) &&
+                    validateStringToNumber(lineParts[0]) &&
+                    validateMeasuredValue(lineParts[1]) &&
+                    validateName(lineParts[2]);
+        }catch (IndexOutOfBoundsException ioe){
+            return false;
+        }
+
     }
 
     private boolean validateLineParts(String[] line) {
@@ -60,4 +66,8 @@ public class Measurement {
         String[] nameParts = nameString.split(" ");
         return nameParts.length == 2;
     }
+
+
 }
+
+
