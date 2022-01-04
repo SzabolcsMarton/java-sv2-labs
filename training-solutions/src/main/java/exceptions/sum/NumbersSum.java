@@ -1,6 +1,6 @@
 package exceptions.sum;
 
-public class NumberSum {
+public class NumbersSum {
 
     public int getSum(int[] numbers){
         if(numbers == null){
@@ -13,7 +13,7 @@ public class NumberSum {
         if(numbers == null){
             throw new IllegalArgumentException("numbers can not be null");
         }
-        int[]stringConvertedToInt = null;
+        int[]stringConvertedToInt;
         try {
             stringConvertedToInt = stringConvertToInt(numbers);
         }catch (NumberFormatException nfe){
