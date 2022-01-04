@@ -13,7 +13,7 @@ public class Measurement {
         try {
             return Files.readAllLines(path);
         } catch (IOException ioe) {
-            throw new IllegalStateException("Can not read file!");
+            throw new IllegalStateException("Can not read file.");
         }
     }
 
@@ -66,7 +66,6 @@ public class Measurement {
         String[] nameParts = nameString.split(" ");
         return nameParts.length == 2;
     }
-
 
 }
 
