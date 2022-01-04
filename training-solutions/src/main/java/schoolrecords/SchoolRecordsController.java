@@ -64,16 +64,20 @@ public class SchoolRecordsController {
             case 5:
                 Student randomStudent = classRecords.repetition();
                 System.out.println("A felelő diák: " + randomStudent.getName());
-                System.out.println("Adja meg az érdemjegyet:");
-                System.out.println("(1, 2, 3, 4, 5)");
-                int mark = scanner.nextInt();
-
+                MarkType mtype = null;
+                while(mtype == null) {
+                    System.out.println("Adja meg az érdemjegyet:");
+                    System.out.println("(1, 2, 3, 4, 5)");
+                    int mark = scanner.nextInt();
+                    scanner.nextLine();
+                    mtype = findMarkType(mark);
+                }
                 System.out.println("Adja meg a tanár nevét:");
                 String tutorName = scanner.nextLine();
                 System.out.println("Adja meg a tantárgy nevét:");
                 String subjectName = scanner.nextLine();
 
-                Mark markToAdd = new Mark(findMarkType(mark), getSubjectFromList(subjectName), getTutorFromList(tutorName));
+                Mark markToAdd = new Mark(mtype, getSubjectFromList(subjectName), getTutorFromList(tutorName));
                 randomStudent.grading(markToAdd);
                 break;
 
