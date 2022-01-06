@@ -2,58 +2,58 @@ package exceptionclass.course;
 
 public class SimpleTime {
 
-    private int hour;
-    private int minute;
+    private final int hour;
+    private final int minute;
 
     public SimpleTime(int hour, int minute) {
-        validateHoursAndMinsInRange(hour,minute);
+        validateHoursAndMinsInRange(hour, minute);
         this.hour = hour;
         this.minute = minute;
     }
 
-    public SimpleTime(String timeString){
-       validateTimeString(timeString);
-       int hourToSet = getHoursFromString(timeString);
-       int minuteToSet = getMinutesFromString(timeString);
-       validateHoursAndMinsInRange(hourToSet,minuteToSet);
-       this.hour = hourToSet;
-       this.minute = minuteToSet;
+    public SimpleTime(String timeString) {
+        validateTimeString(timeString);
+        int hourToSet = getHoursFromString(timeString);
+        int minuteToSet = getMinutesFromString(timeString);
+        validateHoursAndMinsInRange(hourToSet, minuteToSet);
+        this.hour = hourToSet;
+        this.minute = minuteToSet;
 
     }
 
-    private void validateTimeString(String timeString){
-        if(timeString == null){
+    private void validateTimeString(String timeString) {
+        if (timeString == null) {
             throw new InvalidTimeException("Time is null");
         }
-        if( "hh:mm".length() != timeString.length())
+        if ("hh:mm".length() != timeString.length())
             throw new InvalidTimeException("Time is not hh:mm");
 
-        if(!timeString.substring(2,3).equals(":"))
+        if (timeString.charAt(2) != ':')
             throw new InvalidTimeException("Time is not hh:mm");
     }
 
-    private void validateHoursAndMinsInRange(int hours, int minutes){
-        if(hours < 0 || hours > 23){
+    private void validateHoursAndMinsInRange(int hours, int minutes) {
+        if (hours < 0 || hours > 23) {
             throw new InvalidTimeException("Hour is invalid (0-23)");
         }
-        if(minutes < 0 || minutes > 59){
-            throw  new InvalidTimeException("Minute is invalid (0-59)");
+        if (minutes < 0 || minutes > 59) {
+            throw new InvalidTimeException("Minute is invalid (0-59)");
         }
     }
 
-    private int getHoursFromString(String timeString){
+    private int getHoursFromString(String timeString) {
         try {
-            return Integer.parseInt(timeString.substring(0,2));
-        }catch (NumberFormatException nfe){
+            return Integer.parseInt(timeString.substring(0, 2));
+        } catch (NumberFormatException nfe) {
             throw new InvalidTimeException("Time is not hh:mm", nfe);
         }
     }
 
-    private int getMinutesFromString(String timeString){
+    private int getMinutesFromString(String timeString) {
         try {
-            return Integer.parseInt(timeString.substring(3,5));
-        }catch (NumberFormatException nfe){
-            throw new InvalidTimeException("Time is not hh:mm",nfe);
+            return Integer.parseInt(timeString.substring(3, 5));
+        } catch (NumberFormatException nfe) {
+            throw new InvalidTimeException("Time is not hh:mm", nfe);
         }
     }
 
@@ -66,7 +66,7 @@ public class SimpleTime {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("%02d:%02d", this.hour, this.minute);
     }
 }
