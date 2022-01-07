@@ -13,4 +13,8 @@ public class InvalidBinaryStringException extends RuntimeException{
         super(message, cause);
     }
 
+    public InvalidBinaryStringException(Throwable cause) {
+        super(cause);
+    }
+
 }
