@@ -4,7 +4,7 @@ public class BinaryStringConverter {
 
     public boolean[] binaryStringToBooleanArray(String stringToConvert){
         if(stringToConvert == null){
-            throw new NullPointerException("StringToConvert is null");
+            throw new NullPointerException("String To Convert is null");
         }
         boolean[] booleansConverted = new boolean[stringToConvert.length()];
         for (int i = 0; i < stringToConvert.length(); i++){
@@ -14,8 +14,6 @@ public class BinaryStringConverter {
         }
         return booleansConverted;
     }
-
-
 
     public String booleanArrayToBinaryString(boolean[] booleansToConvert){
         checkBooleanArrayIsValid(booleansToConvert);
