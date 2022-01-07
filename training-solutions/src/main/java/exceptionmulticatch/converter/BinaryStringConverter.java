@@ -10,20 +10,20 @@ public class BinaryStringConverter {
         for (int i = 0; i < stringToConvert.length(); i++){
             char character = stringToConvert.charAt(i);
             checkCharacterIsValid(character);
-            booleansConverted[i] = character == '0' ? false : true;
+            booleansConverted[i] = character != '0';
         }
         return booleansConverted;
-    };
+    }
 
 
 
     public String booleanArrayToBinaryString(boolean[] booleansToConvert){
         checkBooleanArrayIsValid(booleansToConvert);
         StringBuilder binaryString = new StringBuilder();
-        for (int i = 0; i < booleansToConvert.length; i++){
-            if(booleansToConvert[i] == true){
+        for (boolean actual : booleansToConvert) {
+            if (actual) {
                 binaryString.append("1");
-            }else {
+            } else {
                 binaryString.append("0");
             }
         }
