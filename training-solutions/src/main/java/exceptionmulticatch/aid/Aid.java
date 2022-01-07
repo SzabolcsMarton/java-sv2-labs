@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Aid {
 
-    private int amount;
+    private final int amount;
 
     public Aid(int amount) {
         this.amount = amount;
@@ -27,10 +27,10 @@ public class Aid {
             for(String actual : lines){
                 String[] parts = actual.split(" ");
                 int aidPerPerson = this.amount / Integer.parseInt(parts[1]);
-                amountsOfAid.add(parts[0] + aidPerPerson);
+                amountsOfAid.add(parts[0] + " " + aidPerPerson);
             }
-        } catch (NullPointerException | IOException e) {
-            throw new IllegalStateException("Counting problem occurred");
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException | ArithmeticException | NumberFormatException | IOException exep) {
+            throw new IllegalStateException("Counting problem occurred", exep);
         }
         return amountsOfAid;
     }
