@@ -37,7 +37,7 @@ public class Bank {
 
     private void checkAccount(Account account){
         if(account == null){
-            throw new InvalidAccountNumberBankOperationException("Invalid accont number!");
+            throw new InvalidAccountNumberBankOperationException("Invalid account number!");
         }
     }
 }
