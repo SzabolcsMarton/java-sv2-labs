@@ -10,6 +10,14 @@ public class Aid {
 
     private int amount;
 
+    public Aid(int amount) {
+        this.amount = amount;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
     public List<String> countAmountsOfAid(Path path){
 
         List<String> amountsOfAid =new ArrayList<>();
