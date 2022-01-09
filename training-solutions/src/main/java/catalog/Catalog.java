@@ -76,8 +76,10 @@ public class Catalog {
         if (minPages <= 0) {
             throw new IllegalArgumentException("Page number must be positive");
         }
+
         List<Feature> temp = new ArrayList<>();
         double sumOfPages = 0.0;
+
         for (CatalogItem catalogItem : catalogItems) {
             temp.addAll(catalogItem.getFeaturesOverPageLimit(minPages));
         }
@@ -85,41 +87,47 @@ public class Catalog {
         for (Feature actual : temp) {
             sumOfPages += ((PrintedFeatures) actual).getNumberOfPages();
         }
+
         if (sumOfPages == 0) {
             throw new IllegalArgumentException("No page");
         }
-        double average = sumOfPages / temp.size();
 
-        return average;
+        return sumOfPages / temp.size();
     }
 
 
     public List<CatalogItem> findByCriteria(SearchCriteria searchCriteria) {
         List<CatalogItem> result = new ArrayList<>();
         for (CatalogItem catalogItem : catalogItems) {
-            for (Feature actualFeature : catalogItem.getFeatures()) {
-                if (searchCriteria.hasTitle() &&
-                        searchCriteria.hasContributor() &&
-                        actualFeature.getTitle().equals(searchCriteria.getTitle()) &&
-                        actualFeature.hasContributors(searchCriteria.getContributor())) {
-                    result.add(catalogItem);
-                    break;
-                }
-                if (searchCriteria.hasContributor() &&
-                        !searchCriteria.hasTitle() &&
-                        actualFeature.hasContributors(searchCriteria.getContributor())) {
-                    result.add(catalogItem);
-                    break;
-                }
-                if(searchCriteria.hasTitle() &&
-                        !searchCriteria.hasContributor() &&
-                        actualFeature.getTitle().equals(searchCriteria.getTitle())) {
-                    result.add(catalogItem);
-                    break;
-                }
+            if (hasFeature(searchCriteria, catalogItem)) {
+                result.add(catalogItem);
             }
         }
         return result;
     }
+
+    private boolean hasFeature(SearchCriteria searchCriteria, CatalogItem catalogItem) {
+        for (Feature actualFeature : catalogItem.getFeatures()) {
+            if (searchCriteria.hasTitle() &&
+                    searchCriteria.hasContributor() &&
+                    actualFeature.getTitle().equals(searchCriteria.getTitle()) &&
+                    actualFeature.hasContributors(searchCriteria.getContributor())) {
+                return true;
+            }
+            if (searchCriteria.hasContributor() &&
+                    !searchCriteria.hasTitle() &&
+                    actualFeature.hasContributors(searchCriteria.getContributor())) {
+                return true;
+            }
+            if (searchCriteria.hasTitle() &&
+                    !searchCriteria.hasContributor() &&
+                    actualFeature.getTitle().equals(searchCriteria.getTitle())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
 
