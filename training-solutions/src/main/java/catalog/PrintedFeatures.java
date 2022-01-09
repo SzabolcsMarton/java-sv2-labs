@@ -2,15 +2,14 @@ package catalog;
 
 import java.util.List;
 
-public class PrintedFeatures implements Feature {
+public class PrintedFeatures extends BaseFeature {
 
-    private final String title;
     private final int numberOfPages;
     private final List<String> authors;
 
     public PrintedFeatures(String title, int numberOfPages, List<String> authors) {
+        super(title);
         validateParameters(title, numberOfPages, authors);
-        this.title = title;
         this.numberOfPages = numberOfPages;
         this.authors = authors;
     }
@@ -33,32 +32,10 @@ public class PrintedFeatures implements Feature {
         return numberOfPages;
     }
 
-//    public int getNumberOfPagesWithMin(int minPage){
-//        if(minPage >= numberOfPages){
-//            return 0;
-//        }
-//        return numberOfPages;
-//    }
-
     @Override
     public List<String> getContributors() {
         return authors;
     }
 
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public boolean hasContributors(String conrtributor) {
-        List<String> contributors = this.getContributors();
-        for(String actual : contributors){
-            if(actual.equals(conrtributor)){
-                return true;
-            }
-        }
-        return false;
-    }
 }
 

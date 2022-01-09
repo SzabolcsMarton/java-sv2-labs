@@ -3,29 +3,29 @@ package catalog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AudioFeatures implements Feature {
+public class AudioFeatures extends BaseFeature {
 
     private List<String> composer;
     private final int length;
     private final List<String> performers;
-    private final String title;
+
 
     public AudioFeatures(String title, int length, List<String> performers) {
+        super(title);
         validate(title, length);
         validateList(performers);
-        this.title = title;
         this.length = length;
         this.performers = performers;
 
     }
 
     public AudioFeatures(String title, int length, List<String> performers, List<String> composer) {
+        super(title);
         validate(title, length);
         validateList(performers, composer);
         this.composer = composer;
         this.length = length;
         this.performers = performers;
-        this.title = title;
     }
 
     public int getLength() {
@@ -68,19 +68,4 @@ public class AudioFeatures implements Feature {
         return contributors;
     }
 
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public boolean hasContributors(String conrtributor) {
-        List<String> contributors = this.getContributors();
-        for(String actual : contributors){
-            if(actual.equals(conrtributor)){
-                return true;
-            }
-        }
-        return false;
-    }
 }

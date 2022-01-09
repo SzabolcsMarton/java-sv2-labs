@@ -118,8 +118,6 @@ public class Catalog {
                     break;
                 }
             }
-
-
         }
         return result;
     }
