@@ -72,4 +72,15 @@ public class AudioFeatures implements Feature {
     public String getTitle() {
         return title;
     }
+
+    @Override
+    public boolean hasContributors(String conrtributor) {
+        List<String> contributors = this.getContributors();
+        for(String actual : contributors){
+            if(actual.equals(conrtributor)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

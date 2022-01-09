@@ -10,22 +10,22 @@ public class CatalogItem {
     private final int price;
     private final String registrationNumber;
 
-    public CatalogItem(String registrationNumber, int price ,Feature...feature) {
+    public CatalogItem(String registrationNumber, int price, Feature... feature) {
         validate(registrationNumber, price, feature);
         this.features.addAll(Arrays.asList(feature));
         this.price = price;
         this.registrationNumber = registrationNumber;
     }
 
-    private void validate(String registrationNumber, int price ,Feature...feature){
+    private void validate(String registrationNumber, int price, Feature... feature) {
 
-        if(Validators.isBlank(registrationNumber)){
+        if (Validators.isBlank(registrationNumber)) {
             throw new IllegalArgumentException("Registration number is invalid");
         }
-        if(feature == null || feature.length == 0){
+        if (feature == null || feature.length == 0) {
             throw new IllegalArgumentException("Feature is invalid");
         }
-        if(price <= 0){
+        if (price <= 0) {
             throw new IllegalArgumentException("Price is invalid");
         }
     }
@@ -44,54 +44,65 @@ public class CatalogItem {
 
     public int numberOfPagesAtOneItem() {
         int sum = 0;
-        for (Feature actual : features){
-            if (actual.getClass() == PrintedFeatures.class){
-                sum +=  ((PrintedFeatures) actual).getNumberOfPages();
+        for (Feature actual : features) {
+            if (actual instanceof PrintedFeatures) {
+                sum += ((PrintedFeatures) actual).getNumberOfPages();
             }
         }
         return sum;
     }
 
-    public int fullLengthAtOneItem(){
+    public int fullLengthAtOneItem() {
         int sum = 0;
-
-        for (Feature actual : features){
-            if (actual.getClass() == AudioFeatures.class){
-                sum +=  ((AudioFeatures) actual).getLength();
+        for (Feature actual : features) {
+            if (actual instanceof AudioFeatures) {
+                sum += ((AudioFeatures) actual).getLength();
             }
         }
         return sum;
     }
 
-    public List<String> getContributors(){
+    public List<Feature> getFeaturesOverPageLimit(int limit) {
+        List<Feature> result = new ArrayList<>();
+        for (Feature actual : features) {
+            if (actual instanceof PrintedFeatures) {
+                if (((PrintedFeatures) actual).getNumberOfPages() > limit) {
+                    result.add(actual);
+                }
+            }
+        }
+        return result;
+    }
+
+    public List<String> getContributors() {
         List<String> contributors = new ArrayList<>();
-        for (Feature actual : features){
+        for (Feature actual : features) {
             contributors.addAll(actual.getContributors());
         }
         return contributors;
     }
 
-    public List<String> getTitles(){
+    public List<String> getTitles() {
         List<String> titles = new ArrayList<>();
-        for (Feature actual : features){
+        for (Feature actual : features) {
             titles.add(actual.getTitle());
         }
         return titles;
     }
 
     public boolean hasAudioFeature() {
-        for (Feature actual : features){
-            if (actual.getClass() == AudioFeatures.class){
-                return  true;
+        for (Feature actual : features) {
+            if (actual.getClass() == AudioFeatures.class) {
+                return true;
             }
         }
         return false;
     }
 
     public boolean hasPrintedFeature() {
-        for (Feature actual : features){
-            if (actual.getClass() == PrintedFeatures.class){
-                return  true;
+        for (Feature actual : features) {
+            if (actual.getClass() == PrintedFeatures.class) {
+                return true;
             }
         }
         return false;

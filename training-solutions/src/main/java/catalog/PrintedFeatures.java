@@ -33,6 +33,13 @@ public class PrintedFeatures implements Feature {
         return numberOfPages;
     }
 
+//    public int getNumberOfPagesWithMin(int minPage){
+//        if(minPage >= numberOfPages){
+//            return 0;
+//        }
+//        return numberOfPages;
+//    }
+
     @Override
     public List<String> getContributors() {
         return authors;
@@ -41,6 +48,17 @@ public class PrintedFeatures implements Feature {
     @Override
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public boolean hasContributors(String conrtributor) {
+        List<String> contributors = this.getContributors();
+        for(String actual : contributors){
+            if(actual.equals(conrtributor)){
+                return true;
+            }
+        }
+        return false;
     }
 }
 
