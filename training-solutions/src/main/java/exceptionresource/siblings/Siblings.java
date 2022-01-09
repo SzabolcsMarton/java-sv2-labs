@@ -16,10 +16,8 @@ public class Siblings {
                 fullNames.add(lastName + " " + line);
             }
         }catch (IOException ioe){
-            throw new IllegalStateException("Can not read the file");
+            throw new IllegalStateException("Problem while reading file");
         }
         return fullNames;
     }
-
-
 }

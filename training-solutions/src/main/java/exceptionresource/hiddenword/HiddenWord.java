@@ -10,7 +10,7 @@ public class HiddenWord {
         try (Scanner scanner = new Scanner(path)) {
             return getWordFromFile(scanner);
         } catch (IOException ioe) {
-            throw new IllegalStateException("Can not read file", ioe);
+            throw new IllegalStateException("Problem while reading file", ioe);
         }
     }
 
