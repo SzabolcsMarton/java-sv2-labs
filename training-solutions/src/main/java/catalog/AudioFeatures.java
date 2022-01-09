@@ -16,7 +16,7 @@ public class AudioFeatures extends BaseFeature {
         validateList(performers);
         this.length = length;
         this.performers = performers;
-
+        this.composer = new ArrayList<>();
     }
 
     public AudioFeatures(String title, int length, List<String> performers, List<String> composer) {
@@ -41,17 +41,17 @@ public class AudioFeatures extends BaseFeature {
         }
     }
 
-    private void validateList(List<String> listToValidate){
-        if(Validators.isEmpty(listToValidate)){
+    private void validateList(List<String> listToValidate) {
+        if (Validators.isEmpty(listToValidate)) {
             throw new IllegalArgumentException("List is empty");
         }
     }
 
-    private void validateList(List<String> listToValidate, List<String> otherListToValidate){
-        if(Validators.isEmpty(listToValidate)){
+    private void validateList(List<String> listToValidate, List<String> otherListToValidate) {
+        if (Validators.isEmpty(listToValidate)) {
             throw new IllegalArgumentException("First list is empty");
         }
-        if(Validators.isEmpty(otherListToValidate)){
+        if (Validators.isEmpty(otherListToValidate)) {
             throw new IllegalArgumentException("Second list is empty");
         }
     }
@@ -59,12 +59,8 @@ public class AudioFeatures extends BaseFeature {
     @Override
     public List<String> getContributors() {
         List<String> contributors = new ArrayList<>();
-        if (!Validators.isEmpty(composer)) {
-            contributors.addAll(composer);
-        }
-        if(!Validators.isEmpty(performers)){
-            contributors.addAll(performers);
-        }
+        contributors.addAll(composer);
+        contributors.addAll(performers);
         return contributors;
     }
 
