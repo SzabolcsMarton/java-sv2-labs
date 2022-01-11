@@ -14,7 +14,7 @@ public class NameServer {
         validateString(hostName);
         validateString(hostIp);
         if (dnsEntryExistsByIp(hostIp) || dnsEntryExistsByName(hostName)){
-           throw new IllegalArgumentException("Already exists");
+            throw new IllegalArgumentException("Already exists");
         }
         dnsEntries.add(new DnsEntry(hostName,hostIp));
     }
@@ -46,7 +46,7 @@ public class NameServer {
     }
 
     private DnsEntry getEntryByName(String name){
-       validateString(name);
+        validateString(name);
         for(DnsEntry actual : dnsEntries){
             if(actual.getHostName().equals(name)){
                 return actual;
