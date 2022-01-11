@@ -15,7 +15,7 @@ public class Library {
         }
         Object object = books.get(0);
         if(!(object instanceof Book)){
-            throw new ClassCastException("Object is not a book");
+            throw new ClassCastException("Object is not an instance of a book");
         }
         return (Book) object;
 
