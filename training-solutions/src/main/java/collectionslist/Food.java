@@ -5,18 +5,18 @@ import java.time.LocalDate;
 public class Food {
 
     private String name;
-    private LocalDate expiryDate;
+    private LocalDate expirationDate;
 
-    public Food(String name, LocalDate expiryDate) {
+    public Food(String name, LocalDate expirationDate) {
         this.name = name;
-        this.expiryDate = expiryDate;
+        this.expirationDate = expirationDate;
     }
 
     public String getName() {
         return name;
     }
 
-    public LocalDate getExpiryDate() {
-        return expiryDate;
+    public LocalDate getExpirationDate() {
+        return expirationDate;
     }
 }
