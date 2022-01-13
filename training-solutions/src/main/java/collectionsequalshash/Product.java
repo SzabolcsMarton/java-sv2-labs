@@ -24,11 +24,11 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Objects.equals(name, product.name) && Objects.equals(regNumber, product.regNumber);
+        return Objects.equals(regNumber, product.regNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, regNumber);
+        return Objects.hash(regNumber);
     }
 }
