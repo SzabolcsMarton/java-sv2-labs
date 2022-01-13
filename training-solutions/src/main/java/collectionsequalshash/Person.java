@@ -38,4 +38,13 @@ public class Person {
     public int hashCode() {
         return Objects.hash(tajNumber);
     }
+
+    public static void main(String[] args) {
+        Person person = new Person("Sanyi",30,"taj123");
+        Person otherPerson = new Person("Jozsi", 25, "taj123");
+        System.out.println(person.equals(otherPerson));
+        System.out.println(person.hashCode());
+        System.out.println(otherPerson.hashCode());
+
+    }
 }
