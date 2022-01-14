@@ -16,9 +16,10 @@ public class BunchOfFlowers {
     }
 
     public void  addFlowerInTheMiddle(String flower){
-        int halfIndex = flowers.size() / 2;
-        if(halfIndex % 2 == 0){
-            flowers.add(flower);
+        int numberOfFLowers = flowers.size();
+        int halfIndex = numberOfFLowers / 2;
+        if(numberOfFLowers % 2 == 0){
+            flowers.add(halfIndex,flower);
         } else {
             flowers.add(halfIndex,flower);
             flowers.add(halfIndex + 2,flower);
