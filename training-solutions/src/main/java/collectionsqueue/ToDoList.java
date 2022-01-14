@@ -28,4 +28,25 @@ public class ToDoList {
         }
         return todosInUrgencyOrder;
     }
+
+    public static void main(String[] args) {
+
+        ToDoList toDoList = new ToDoList();
+
+        toDoList.addToDo(new ToDo("a", true));
+        toDoList.addToDo(new ToDo("b", true));
+        toDoList.addToDo(new ToDo("c", false));
+        toDoList.addToDo(new ToDo("d", false));
+        toDoList.addToDo(new ToDo("e", true));
+
+        Deque<ToDo> result = toDoList.getTodosInUrgencyOrder();
+
+        System.out.println(result);
+
+        System.out.println(result.pop());
+        System.out.println(result.pop());
+        System.out.println(result.pop());
+        System.out.println(result.pop());
+        System.out.println(result.pop());
+    }
 }
