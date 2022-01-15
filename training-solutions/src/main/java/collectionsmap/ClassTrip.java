@@ -27,7 +27,8 @@ public class ClassTrip {
 
     private void loadToMap(List<String > linesFromFile){
         for (String actual : linesFromFile){
-            inPayments.put(actual.split(":")[0],Integer.parseInt(actual.split(":")[1]));
+            String[]parts =actual.split(": ");
+            inPayments.put(parts[0],Integer.parseInt(parts[1]));
         }
     }
 }
