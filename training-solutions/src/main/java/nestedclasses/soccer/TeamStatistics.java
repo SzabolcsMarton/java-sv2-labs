@@ -48,6 +48,8 @@ public class TeamStatistics {
         return Objects.hash(teamName);
     }
 
+
+
     public static class Match {
 
         private int played;
