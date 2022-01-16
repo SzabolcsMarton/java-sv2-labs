@@ -1,6 +1,8 @@
 package collectionscomp;
 
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Building implements Comparable<Building>{
     private String address;
@@ -50,5 +52,15 @@ public class Building implements Comparable<Building>{
     @Override
     public int compareTo(Building o) {
         return Integer.valueOf(this.levels).compareTo(o.levels);
+    }
+
+    public static void main(String[] args) {
+        Set<Building> buildings = new TreeSet<>();
+        buildings.add(new Building("Budapest",100, 5));
+        buildings.add(new Building("Budapest",100, 3));
+        buildings.add(new Building("Budapest",100, 2));
+        buildings.add(new Building("Budapest",100, 4));
+
+        System.out.println(buildings);
     }
 }
