@@ -47,7 +47,7 @@ public class LostProperty implements Comparable<LostProperty>{
 
     @Override
     public int compareTo(LostProperty property) {
-        if(this.description.compareTo(property.getDescription()) == 0) {
+        if(this.description.compareTo(property.description) == 0) {
             return this.registrationDate.compareTo(property.getRegistrationDate());
         }else {
             return this.description.compareTo(property.getDescription());

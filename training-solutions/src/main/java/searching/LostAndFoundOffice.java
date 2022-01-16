@@ -9,13 +9,12 @@ public class LostAndFoundOffice {
 
     private List<LostProperty> lostProperties = new ArrayList<>();
 
-    public void addProperties(LostProperty property){
+    public void addProperty(LostProperty property){
         lostProperties.add(property);
     }
 
-    public LostProperty findLostProperty(String description){
-        LostProperty temp = new LostProperty(description, LocalDate.now());
-        int index = Collections.binarySearch(lostProperties,temp);
+    public LostProperty findLostProperty(LostProperty searched) {
+        int index = Collections.binarySearch(lostProperties, searched);
         if (index < 0) {
             throw new IllegalArgumentException("Property not found.");
         }
