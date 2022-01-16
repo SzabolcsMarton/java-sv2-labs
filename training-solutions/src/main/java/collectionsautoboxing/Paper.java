@@ -23,6 +23,7 @@ public class Paper {
 
         for (String actualclass : classPerKg.keySet()){
             if(classPerKg.get(actualclass) > highestKg){
+                highestKg = classPerKg.get(actualclass);
                 resultClass = actualclass;
             }
         }
