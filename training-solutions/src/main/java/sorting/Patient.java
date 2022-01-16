@@ -14,8 +14,6 @@ public class Patient {
         this.scheduledTime = scheduledTime;
     }
 
-
-
     public String getName() {
         return name;
     }
