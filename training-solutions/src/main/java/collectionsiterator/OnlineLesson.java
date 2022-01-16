@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 public class OnlineLesson {
 
-    private String nameOfTeacher;
-    private String titleOfLesson;
-    private LocalDateTime startsAt;
+    private final String nameOfTeacher;
+    private final String titleOfLesson;
+    private final LocalDateTime startsAt;
 
     public OnlineLesson(String nameOfTeacher, String titleOfLesson, LocalDateTime startsAt) {
         this.nameOfTeacher = nameOfTeacher;
