@@ -10,7 +10,7 @@ public class HomeSchooling {
     private List<OnlineLesson> lessons = new ArrayList<>();
 
     public void addNewLesson(OnlineLesson lesson){
-        int index = 0;
+        int index = lessons.size();
         for (int i = 0; i < lessons.size() - 1; i++) {
             LocalDateTime lessonStartAt = lessons.get(i).getStartsAt();
             LocalDateTime nextLessonStartAt = lessons.get(i + 1).getStartsAt();
