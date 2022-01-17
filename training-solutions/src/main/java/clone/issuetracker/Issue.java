@@ -22,15 +22,14 @@ public class Issue {
         name = issue.name;
         time = issue.time;
         status = issue.status;
-        if(copyMode.equals(CopyMode.WITH_COMMENTS)){
+        if (copyMode.equals(CopyMode.WITH_COMMENTS)) {
             List<Comment> temp = new ArrayList<>();
-            for (Comment actual : issue.comments){
+            for (Comment actual : issue.comments) {
                 temp.add(new Comment(actual));
             }
             comments = temp;
         }
     }
-
 
     public String getName() {
         return name;
@@ -56,11 +55,11 @@ public class Issue {
         this.status = status;
     }
 
-    public List<Comment> getComments(){
-        return new ArrayList<>(comments);
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void addComments(Comment comment){
+    public void addComments(Comment comment) {
         comments.add(comment);
     }
 }
