@@ -10,6 +10,12 @@ public class Sapling {
         this.height = height;
     }
 
+    public void cut(int maxHeight){
+        if(this.height > maxHeight){
+            this.setHeight(maxHeight);
+        }
+    }
+
     public void setHeight(int height) {
         this.height = height;
     }
