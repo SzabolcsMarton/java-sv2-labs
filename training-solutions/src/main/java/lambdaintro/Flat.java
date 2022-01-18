@@ -1,7 +1,5 @@
 package lambdaintro;
 
-import javax.swing.*;
-
 public class Flat {
 
     private String address;
