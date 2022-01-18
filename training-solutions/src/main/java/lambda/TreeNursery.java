@@ -16,7 +16,7 @@ public class TreeNursery {
     }
 
     public void sell(String species, int minHeight){
-        saplings.removeIf(sapling -> sapling.getSpecies().equals(species) || sapling.getHeight() > minHeight);
+        saplings.removeIf(sapling -> sapling.getSpecies().equals(species) && sapling.getHeight() > minHeight);
     }
 
     public List<Sapling> getSaplings() {
