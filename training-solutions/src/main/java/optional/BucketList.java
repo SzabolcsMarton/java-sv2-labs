@@ -6,7 +6,11 @@ import java.util.Optional;
 
 public class BucketList {
 
-    private List<Destination> destinations = new ArrayList<>();
+    private List<Destination> destinations;
+
+    public BucketList(List<Destination> destinations) {
+        this.destinations = destinations;
+    }
 
     public Optional<Destination> getDestinationWithKeyword(String keyword){
         if(destinations.isEmpty()){
