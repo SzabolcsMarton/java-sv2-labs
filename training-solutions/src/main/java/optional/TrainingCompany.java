@@ -3,11 +3,11 @@ package optional;
 import java.util.List;
 import java.util.Optional;
 
-public class TraininCompany {
+public class TrainingCompany {
 
     private List<Course> courses;
 
-    public TraininCompany(List<Course> courses) {
+    public TrainingCompany(List<Course> courses) {
         this.courses = courses;
     }
 
