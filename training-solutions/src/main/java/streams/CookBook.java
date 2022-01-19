@@ -8,6 +8,10 @@ public class CookBook {
 
     private List<Cake> cakes = new ArrayList<>();
 
+    public CookBook(List<Cake> cakes) {
+        this.cakes = cakes;
+    }
+
     public void addCakes(Cake cake) {
         cakes.add(cake);
     }
