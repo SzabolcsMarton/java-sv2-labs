@@ -17,8 +17,8 @@ public class Read {
 
     public List<String> listBookTitlesWithGivenAuthor(String author) {
         return books.stream()
-                .map(Book::getAuthor)
-                .filter(bookAuthor -> bookAuthor.equals(author))
+                .filter(book -> book.getAuthor().equals(author))
+                .map(Book::getTitle)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
     }
@@ -33,6 +33,7 @@ public class Read {
     public void addBook(Book book) {
         this.books.add(book);
     }
+
     public List<Book> getBooks() {
         return books;
     }
