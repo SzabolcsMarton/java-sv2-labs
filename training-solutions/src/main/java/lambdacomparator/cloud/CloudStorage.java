@@ -30,6 +30,10 @@ public class CloudStorage implements Comparable<CloudStorage>{
         return price;
     }
 
+    public PayPeriod getPayPeriod() {
+        return payPeriod;
+    }
+
     @Override
     public int compareTo(CloudStorage other) {
         double value = 0;
