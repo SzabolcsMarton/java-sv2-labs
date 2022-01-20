@@ -22,6 +22,16 @@ public class Clouds {
 
     }
 
+    public List<CloudStorage> worstOffers(List<CloudStorage> storages) {
+        List<CloudStorage> result = new ArrayList<>(storages);
+        result.sort(Comparator.reverseOrder());
+        return result.subList(0,findSublistSize(result));
+    }
+
+    private int findSublistSize(List<CloudStorage> listToCheck){
+        return listToCheck.size() > 3 ? 3 : listToCheck.size();
+    }
+
 
     public List<CloudStorage> getStorages() {
         return storages;
