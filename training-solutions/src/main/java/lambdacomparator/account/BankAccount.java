@@ -4,9 +4,9 @@ public class BankAccount implements Comparable<BankAccount>{
 
     private String accountNumber;
     private String nameOfOwner;
-    private int balance;
+    private double balance;
 
-    public BankAccount(String accountNumber, String nameOfOwner, int balance) {
+    public BankAccount(String accountNumber, String nameOfOwner, double balance) {
         this.accountNumber = accountNumber;
         this.nameOfOwner = nameOfOwner;
         this.balance = balance;
@@ -20,7 +20,7 @@ public class BankAccount implements Comparable<BankAccount>{
         return nameOfOwner;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
