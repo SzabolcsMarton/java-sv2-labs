@@ -1,7 +1,7 @@
 package lambdacomparator.cloud;
 
 public enum PayPeriod {
-    MOUNTHLY(1), ANNUAL(12), LIFETIME(60);
+    MONTHLY(1), ANNUAL(12), LIFETIME(60);
 
     private int length;
 
