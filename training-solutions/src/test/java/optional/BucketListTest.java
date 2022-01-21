@@ -18,17 +18,21 @@ class BucketListTest {
     void init() {
         testDestination.add(new Destination("egy hely", "nagyon szep", 50));
         testDestination.add(new Destination("ket hely", "szep", 60));
-        testDestination.add(new Destination("harom hely", "nagyon", 70));
+        testDestination.add(new Destination("harom hely", "nagyon jo uticel", 70));
         testDestination.add(new Destination("negy hely", "csodalatos", 80));
         bucketList = new BucketList(testDestination);
 
     }
 
+//    @Test
+//    void getDestinationWithKeywordFoundTest() {
+//        assertEquals("szep", bucketList.getDestinationWithKeyword("ket").get().getDescription());
+//    }
+
     @Test
     void getDestinationWithKeywordFoundTest() {
-        assertEquals("szep", bucketList.getDestinationWithKeyword("ket").get().getDescription());
+        assertEquals("harom hely", bucketList.getDestinationWithKeyword("jo").get().getName());
     }
-
     @Test
     void getDestinationWithKeywordNotFoundTest() {
         assertEquals(Optional.empty(), bucketList.getDestinationWithKeyword("aaa"));

@@ -16,8 +16,15 @@ public class BucketList {
         if(destinations.isEmpty()){
             return Optional.empty();
         }
+
+        //int the firs version of this exercise there was a search for  the name contains
+
+//        for(Destination actual : destinations){
+//            if(actual.getName().contains(keyword)){
+//                return Optional.of(actual);
+//            }
         for(Destination actual : destinations){
-            if(actual.getName().contains(keyword)){
+            if(actual.getDescription().contains(keyword)){
                 return Optional.of(actual);
             }
         }
