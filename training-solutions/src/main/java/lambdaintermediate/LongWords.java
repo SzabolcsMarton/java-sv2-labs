@@ -30,7 +30,7 @@ public class LongWords {
     public Optional<String> getShortestWordContainingGivenCharacter(char character) {
         return words
                 .stream()
-                .filter(s -> s.indexOf(character) > 0)
+                .filter(s -> s.indexOf(character) >= 0)
                 .min(Comparator.comparing(String::length));
     }
 
