@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class LongWords {
 
-    private List<String> words;
+    private final List<String> words;
 
     public LongWords(List<String> words) {
         this.words = words;
