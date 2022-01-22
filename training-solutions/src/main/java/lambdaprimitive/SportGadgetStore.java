@@ -21,7 +21,7 @@ public class SportGadgetStore {
         return products
                 .stream()
                 .mapToDouble(Product::getPrice)
-                .average().orElse(0.0);
+                .average().orElse(0);
     }
 
     public String getExpensiveProductStatistics(double minPrice) {
