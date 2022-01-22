@@ -16,7 +16,8 @@ public class Truck {
         return thingsToLoad
                 .stream()
                 .mapToDouble(Cargo::getLength)
-                .min().orElse(0.0);
+                .min()
+                .orElse(0.0);
     }
 
     public int getTotalWeight() {
@@ -47,12 +48,12 @@ public class Truck {
                 .stream()
                 .mapToInt(Cargo::getWeight)
                 .summaryStatistics();
-        if(stat.getCount() == 0) {
+        if (stat.getCount() == 0) {
             return "No cargo.";
         }
         return String.format("A rakományban található %d tétel, melyeknek összsúlya %d kg," +
-                " közülük a legnehezebb %d kg, a legkönnyebb %d kg. A súlyuk átlagosan %.1f kg.",
-                stat.getCount(),stat.getSum(),stat.getMax(),stat.getMin(),stat.getAverage());
+                        " közülük a legnehezebb %d kg, a legkönnyebb %d kg. A súlyuk átlagosan %.1f kg.",
+                stat.getCount(), stat.getSum(), stat.getMax(), stat.getMin(), stat.getAverage());
     }
 
 
