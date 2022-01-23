@@ -17,4 +17,8 @@ public class ChristmasTree {
     public double getHeight() {
         return height;
     }
+
+    public double getPrice() {
+        return this.height * this.type.getPricePerMeter();
+    }
 }
