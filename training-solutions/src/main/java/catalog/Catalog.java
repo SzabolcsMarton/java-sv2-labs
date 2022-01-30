@@ -1,6 +1,7 @@
 package catalog;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Catalog {
@@ -14,16 +15,23 @@ public class Catalog {
         catalogItems.add(catalogItem);
     }
 
+//    public void deleteItemByRegistrationNumber(String registrationNumber) {
+//        validator(registrationNumber);
+//        int index = 0;
+//        for (int i = 0; i < catalogItems.size(); i++) {
+//            if (catalogItems.get(i).getRegistrationNumber().equals(registrationNumber)) {
+//                index = i;
+//                break;
+//            }
+//        }
+//        catalogItems.remove(index);
+//    }
+
     public void deleteItemByRegistrationNumber(String registrationNumber) {
         validator(registrationNumber);
-        int index = 0;
-        for (int i = 0; i < catalogItems.size(); i++) {
-            if (catalogItems.get(i).getRegistrationNumber().equals(registrationNumber)) {
-                index = i;
-                break;
-            }
-        }
-        catalogItems.remove(index);
+        catalogItems.removeIf(item -> registrationNumber.equals(item.getRegistrationNumber()));
+
+
     }
 
     private void validator(String registrationNumber) {
@@ -32,44 +40,71 @@ public class Catalog {
         }
     }
 
+//    public List<CatalogItem> getAudioLibraryItems() {
+//        List<CatalogItem> result = new ArrayList<>();
+//        for (CatalogItem actual : catalogItems) {
+//            if (actual.hasAudioFeature()) {
+//                result.add(actual);
+//            }
+//        }
+//        return result;
+//    }
     public List<CatalogItem> getAudioLibraryItems() {
-        List<CatalogItem> result = new ArrayList<>();
-        for (CatalogItem actual : catalogItems) {
-            if (actual.hasAudioFeature()) {
-                result.add(actual);
-            }
-        }
-        return result;
+       return catalogItems
+               .stream()
+               .filter(CatalogItem::hasAudioFeature)
+               .toList();
+    }
+//
+//    public List<CatalogItem> getPrintedLibraryItems() {
+//        List<CatalogItem> result = new ArrayList<>();
+//        for (CatalogItem actual : catalogItems) {
+//            if (actual.hasPrintedFeature()) {
+//                result.add(actual);
+//            }
+//        }
+//        return result;
+//    }
+//
+    public List<CatalogItem> getPrintedLibraryItems() {
+        return catalogItems
+                .stream()
+                .filter(CatalogItem::hasPrintedFeature)
+                .toList();
     }
 
-    public List<CatalogItem> getPrintedLibraryItems() {
-        List<CatalogItem> result = new ArrayList<>();
-        for (CatalogItem actual : catalogItems) {
-            if (actual.hasPrintedFeature()) {
-                result.add(actual);
-            }
-        }
-        return result;
-    }
+//    public int getAllPageNumber() {
+//        int sumOfPages = 0;
+//        for (CatalogItem actual : catalogItems) {
+//            if (actual.hasPrintedFeature()) {
+//                sumOfPages += actual.numberOfPagesAtOneItem();
+//            }
+//        }
+//        return sumOfPages;
+//    }
 
     public int getAllPageNumber() {
-        int sumOfPages = 0;
-        for (CatalogItem actual : catalogItems) {
-            if (actual.hasPrintedFeature()) {
-                sumOfPages += actual.numberOfPagesAtOneItem();
-            }
-        }
-        return sumOfPages;
+        return catalogItems
+                .stream()
+                .mapToInt(CatalogItem::numberOfPagesAtOneItem)
+                .sum();
     }
 
+//    public int getFullLength() {
+//        int sumOfLength = 0;
+//        for (CatalogItem actual : catalogItems) {
+//            if (actual.hasAudioFeature()) {
+//                sumOfLength += actual.fullLengthAtOneItem();
+//            }
+//        }
+//        return sumOfLength;
+//    }
+
     public int getFullLength() {
-        int sumOfLength = 0;
-        for (CatalogItem actual : catalogItems) {
-            if (actual.hasAudioFeature()) {
-                sumOfLength += actual.fullLengthAtOneItem();
-            }
-        }
-        return sumOfLength;
+       return catalogItems
+               .stream()
+               .mapToInt(CatalogItem::fullLengthAtOneItem)
+               .sum();
     }
 
     public double averagePageNumberOver(int minPages) {
