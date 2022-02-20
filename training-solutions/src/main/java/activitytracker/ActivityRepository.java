@@ -16,14 +16,23 @@ public class ActivityRepository {
         this.dataSource = dataSource;
     }
 
-    public void saveActivity(LocalDateTime startTime, String desc, Type type){
+    public long saveActivity(LocalDateTime startTime, String desc, Type type){
         try(Connection connection = dataSource.getConnection();
             PreparedStatement stmt =
-                    connection.prepareStatement("insert into activities(start_time,activity_desc,activity_type) values(?,?,?)")) {
+                    connection.prepareStatement("insert into activities(start_time,activity_desc,activity_type) values(?,?,?)",
+                            Statement.RETURN_GENERATED_KEYS)) {
             stmt.setTimestamp(1,Timestamp.valueOf(startTime));
             stmt.setString(2, desc);
             stmt.setString(3,type.toString());
             stmt.executeUpdate();
+
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return rs.getLong(1);
+                }
+                throw new IllegalStateException("Cannot insert and get id");
+            }
+
         } catch (SQLException sqle) {
             throw new IllegalStateException("Cannot update: ", sqle);
         }

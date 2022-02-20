@@ -1,5 +1,6 @@
 package activitytracker;
 
+import org.flywaydb.core.Flyway;
 import org.mariadb.jdbc.MariaDbDataSource;
 
 import java.sql.SQLException;
@@ -15,6 +16,8 @@ public class ActivityTrackerMain {
                 "kosarazas", Type.BASKETBALL);
         Activity thirdActivity = new Activity(3, LocalDateTime.of(2021, 8, 15, 18, 00, 00),
                 "futkosas", Type.RUNNING);
+        Activity fourthActivity = new Activity(4, LocalDateTime.of(2021, 8, 16, 18, 00, 00),
+                "bringazas", Type.BIKING);
 
         MariaDbDataSource dataSource = new MariaDbDataSource();
         try {
@@ -27,11 +30,16 @@ public class ActivityTrackerMain {
 
         ActivityRepository activityRepository = new ActivityRepository(dataSource);
 
-//        activityRepository.saveActivity(firstActivity.getStartTime(), firstActivity.getDesc(), firstActivity.getType());
+        Flyway flyway = Flyway.configure().dataSource(dataSource).load();
+        //flyway.clean();
+        flyway.migrate();
+
+        System.out.println(activityRepository.saveActivity(firstActivity.getStartTime(), firstActivity.getDesc(), firstActivity.getType()));
 //        activityRepository.saveActivity(secondActivity.getStartTime(), secondActivity.getDesc(), secondActivity.getType());
 //        activityRepository.saveActivity(thirdActivity.getStartTime(), thirdActivity.getDesc(), thirdActivity.getType());
+//        activityRepository.saveActivity(fourthActivity.getStartTime(), fourthActivity.getDesc(), fourthActivity.getType());
 
-        System.out.println(activityRepository.findActivityById(2).toString());
+     // System.out.println(activityRepository.findActivityById(2).toString());
      //   System.out.println(activityRepository.findActivityById(6).toString());
 
 //        List<Activity> activities_list = activityRepository.listActivities();
