@@ -83,6 +83,7 @@ class ActivityRepositoryTest {
         Activity expected = repository.saveActivityReturnActivityWithGeneratedKeys(activity);
 
         assertEquals(6, expected.getId());
+
     }
 
     @Test
@@ -92,14 +93,15 @@ class ActivityRepositoryTest {
         TrackPoint trackPoint3 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302470, 18.5472280);
         TrackPoint trackPoint4 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302550, 18.5472310);
         TrackPoint trackPoint5 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302552, 18.5472312);
-        List<TrackPoint> trackpoints = Arrays.asList(trackPoint1, trackPoint2, trackPoint3);
+        List<TrackPoint> trackpoints = Arrays.asList(trackPoint1, trackPoint2, trackPoint3,trackPoint4, trackPoint5);
         Activity activityWithTrackpoints = new Activity(LocalDateTime.of(2020, 12, 14, 15, 30), "laza délutáni futás", Type.RUNNING, trackpoints);
 
         repository.saveActivityAndSaveTrackpoints(activityWithTrackpoints);
-        Activity expected = repository.findActivityWithTrackpointsById(1);
+        Activity expected = repository.findActivityWithTrackpointsById(6);
 
         assertEquals(activityWithTrackpoints.getTrackpoints().size(), expected.getTrackpoints().size());
-
+        assertEquals(activityWithTrackpoints.getType(), expected.getType());
+        assertEquals(activityWithTrackpoints.getStartTime(), expected.getStartTime());
     }
 
     @Test

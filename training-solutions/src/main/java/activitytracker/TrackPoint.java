@@ -34,4 +34,14 @@ public class TrackPoint {
     public double getLon() {
         return lon;
     }
+
+    @Override
+    public String toString() {
+        return "TrackPoint{" +
+                "id=" + id +
+                ", time=" + time +
+                ", lat=" + lat +
+                ", lon=" + lon +
+                '}';
+    }
 }
