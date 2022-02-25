@@ -1,10 +1,7 @@
 package activitytracker;
 
-import activity.ActivityType;
-
 import javax.sql.DataSource;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,68 +13,139 @@ public class ActivityRepository {
         this.dataSource = dataSource;
     }
 
-    public long saveActivity(LocalDateTime startTime, String desc, Type type){
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement stmt =
-                    connection.prepareStatement("insert into activities(start_time,activity_desc,activity_type) values(?,?,?)",
-                            Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setTimestamp(1,Timestamp.valueOf(startTime));
-            stmt.setString(2, desc);
-            stmt.setString(3,type.toString());
-            stmt.executeUpdate();
+    public void saveActivity(Activity activity) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement prepStmt = conn.prepareStatement("insert into activities(start_time, activity_desc, activity_type) values (?, ?, ?);")) {
+            setupStatement(prepStmt, activity);
+            prepStmt.executeUpdate();
 
-            try (ResultSet rs = stmt.getGeneratedKeys()) {
+        } catch (SQLException sqle) {
+            throw new IllegalStateException("Cannot insert activity", sqle);
+        }
+    }
+
+    public void saveActivities(List<Activity> activities) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement prepStmt = conn.prepareStatement("insert into activities(start_time, activity_desc, activity_type) values (?, ?, ?);")) {
+            for (Activity actual : activities) {
+                setupStatement(prepStmt, actual);
+                prepStmt.executeUpdate();
+            }
+        } catch (SQLException sqle) {
+            throw new IllegalStateException("Cannot insert activities", sqle);
+        }
+    }
+
+    public Activity saveActivityReturnActivityWithGeneratedKeys(Activity activity) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement prepStmt = conn.prepareStatement("insert into activities(start_time, activity_desc, activity_type) values (?, ?, ?);",
+                     Statement.RETURN_GENERATED_KEYS)) {
+            setupStatement(prepStmt, activity);
+            prepStmt.executeUpdate();
+            ResultSet rs = prepStmt.getGeneratedKeys();
+            if (rs.next()) {
+                return new Activity(rs.getInt(1), activity.getStartTime(), activity.getDescription(), activity.getType());
+            }
+            throw new IllegalStateException("Cannot get activity with generated keys");
+        } catch (SQLException sqle) {
+            throw new IllegalStateException("Cannot insert Activity", sqle);
+        }
+    }
+
+    private long saveActivityAndReturnGeneratedKey(Activity activity, Connection conn) {
+        try (PreparedStatement prepStmt = conn.prepareStatement("insert into activities(start_time, activity_desc, activity_type) values (?, ?, ?);",
+                Statement.RETURN_GENERATED_KEYS)) {
+            setupStatement(prepStmt, activity);
+            prepStmt.executeUpdate();
+            return idFromResultset(prepStmt);
+
+        } catch (SQLException sqle) {
+            throw new IllegalStateException("Cannot insert Activity", sqle);
+        }
+    }
+
+    private long idFromResultset(PreparedStatement prepStmt) {
+        long activityId = 0;
+        try (ResultSet rs = prepStmt.getGeneratedKeys()) {
+            if (rs.next()) {
+                activityId = rs.getLong(1);
+            }
+        } catch (SQLException sqle) {
+            throw new IllegalStateException("Cannot get generated keys");
+        }
+
+        return activityId;
+    }
+
+
+    private void saveTrackpoints(long activityId, Activity activity, Connection conn) throws SQLException {
+        try (PreparedStatement prepStmt = conn.prepareStatement("insert into track_point(id,tp_time,lat,lon) values(?,?,?,?)")) {
+            for (TrackPoint actual : activity.getTrackpoints()) {
+                if (actual.getLat() < -90.0 || actual.getLat() > 90.0 || actual.getLon() < -180 || actual.getLon() > 180.0) {
+                    throw new IllegalArgumentException("Not suitable values for latitude or longitude!");
+                }
+                prepStmt.setLong(1, activityId);
+                prepStmt.setDate(2, Date.valueOf(actual.getTime()));
+                prepStmt.setDouble(3, actual.getLat());
+                prepStmt.setDouble(4, actual.getLon());
+                prepStmt.executeUpdate();
+            }
+        }
+    }
+
+    public void saveActivityAndSaveTrackpoints(Activity activity){
+        try (Connection conn = dataSource.getConnection()){
+            conn.setAutoCommit(false);
+            try {
+                long activityId = saveActivityAndReturnGeneratedKey(activity,conn);
+                saveTrackpoints(activityId,activity,conn);
+                conn.commit();
+            }catch (Exception exception){
+                conn.rollback();
+                throw new IllegalStateException("Transaction failed",exception);
+            }
+        }catch (SQLException sqle){
+            throw new IllegalStateException("Cannot connect", sqle);
+        }
+    }
+
+    public Activity findActivityById(long id) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement prepStmt = conn.prepareStatement("select * from activities where id=?")) {
+            prepStmt.setLong(1, id);
+            try (ResultSet rs = prepStmt.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getLong(1);
+                    return new Activity(rs.getLong("id"), rs.getTimestamp("start_time").toLocalDateTime(), rs.getString("activity_desc"), Type.valueOf(rs.getString("activity_type")));
                 }
-                throw new IllegalStateException("Cannot insert and get id");
+                throw new IllegalStateException("Cannot find Activity with id: " + id);
             }
 
         } catch (SQLException sqle) {
-            throw new IllegalStateException("Cannot update: ", sqle);
+            throw new IllegalStateException("Cannot query Activity with id: " + id, sqle);
         }
     }
 
-    public Activity findActivityById(int activity_id){
-        Activity activity = null;
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM activities WHERE id= ?")){
-            stmt.setString(1, String.valueOf(activity_id));
-
-            try(ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    int id = rs.getInt("id");
-                    LocalDateTime startTime = rs.getTimestamp("start_time").toLocalDateTime();
-                    String desc = rs.getString("activity_desc");
-                    Type type = Type.valueOf(rs.getString("activity_type"));
-                    activity = new Activity(id,startTime,desc,type);
-                }else{
-                    throw new IllegalStateException("Cannot find activity with id: " + activity_id);
-                }
+    public List<Activity> listActivities() {
+        List<Activity> activities = new ArrayList<>();
+        try (Connection conn = dataSource.getConnection();
+             Statement statement = conn.createStatement();
+             ResultSet rs = statement.executeQuery("select * from activities")) {
+            while (rs.next()) {
+                activities.add(new Activity(rs.getLong("id"),
+                        rs.getTimestamp("start_time").toLocalDateTime(),
+                        rs.getString("activity_desc"),
+                        Type.valueOf(rs.getString("activity_type"))));
             }
+            return activities;
         } catch (SQLException sqle) {
-            throw new IllegalStateException("Cannot query!",sqle);
+            throw new IllegalStateException("Cannot query activities", sqle);
         }
-        return activity;
     }
 
-    public List<Activity> listActivities(){
-        List<Activity> result = new ArrayList<>();
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM activities")){
-
-            try(ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    int id = rs.getInt("id");
-                    LocalDateTime startTime = rs.getTimestamp("start_time").toLocalDateTime();
-                    String desc = rs.getString("activity_desc");
-                    Type type = Type.valueOf(rs.getString("activity_type"));
-                    result.add(new Activity(id,startTime,desc,type));
-                }
-            }
-        } catch (SQLException sqle) {
-            throw new IllegalStateException("Cannot query!",sqle);
-        }
-        return result;
+    private void setupStatement(PreparedStatement prepStmt, Activity activity) throws SQLException {
+        prepStmt.setTimestamp(1, Timestamp.valueOf(activity.getStartTime()));
+        prepStmt.setString(2, activity.getDescription());
+        prepStmt.setString(3, activity.getType().toString());
     }
+
 }
