@@ -58,24 +58,25 @@ class ActivityRepositoryTest {
     }
 
     @Test
-    void findActivityByIdTest(){
+    void findActivityByIdTest() {
         Activity activity = repository.findActivityById(4);
 
         assertEquals("futkosas", activity.getDescription());
     }
 
     @Test
-    void findActivityByIdShouldThrowExeption(){
+    void findActivityByIdShouldThrowExeption() {
         Exception exception = assertThrows(IllegalStateException.class, () -> repository.findActivityById(7));
         assertEquals("Cannot find Activity with id: 7", exception.getMessage());
     }
 
     @Test
-    void listActivitiesTest(){
+    void listActivitiesTest() {
         List<Activity> testActivities = repository.listActivities();
 
-        assertEquals(5,testActivities.size());
+        assertEquals(5, testActivities.size());
     }
+
     @Test
     void testSaveActivityAndReturnGeneratedKeys() {
         Activity activity = new Activity(LocalDateTime.of(2020, 5, 12, 10, 00), "futkosas", Type.RUNNING);
@@ -85,20 +86,24 @@ class ActivityRepositoryTest {
     }
 
     @Test
-    void saveTrackPointsTest(){
+    void saveTrackPointsTest() {
         TrackPoint trackPoint1 = new TrackPoint(LocalDate.of(2021, 2, 24), 47.2181020, 18.5411940);
         TrackPoint trackPoint2 = new TrackPoint(LocalDate.of(2021, 2, 24), 47.2181230, 18.5411780);
         TrackPoint trackPoint3 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302470, 18.5472280);
         TrackPoint trackPoint4 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302550, 18.5472310);
         TrackPoint trackPoint5 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302552, 18.5472312);
-        TrackPoint trackPoint6 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302552, 18.5472312);
-        List<TrackPoint> trackpoints = Arrays.asList(trackPoint1, trackPoint2, trackPoint3, trackPoint4, trackPoint5);
+        List<TrackPoint> trackpoints = Arrays.asList(trackPoint1, trackPoint2, trackPoint3);
         Activity activityWithTrackpoints = new Activity(LocalDateTime.of(2020, 12, 14, 15, 30), "laza délutáni futás", Type.RUNNING, trackpoints);
 
         repository.saveActivityAndSaveTrackpoints(activityWithTrackpoints);
+        Activity expected = repository.findActivityWithTrackpointsById(1);
+
+        assertEquals(activityWithTrackpoints.getTrackpoints().size(), expected.getTrackpoints().size());
+
     }
+
     @Test
-    void testSaveActivitywithTrackPointsSomethingIsWrong() {
+    void saveActivitywithTrackPointsSomethingIsWrongTest() {
         TrackPoint trackPoint1 = new TrackPoint(LocalDate.of(2021, 2, 24), 47.2181020, 18.5411940);
         TrackPoint trackPoint2 = new TrackPoint(LocalDate.of(2021, 2, 24), 47.2181230, 18.5411780);
         TrackPoint trackPoint3 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302470, 15238.5472280);
@@ -111,5 +116,6 @@ class ActivityRepositoryTest {
 
 
     }
+
 
 }

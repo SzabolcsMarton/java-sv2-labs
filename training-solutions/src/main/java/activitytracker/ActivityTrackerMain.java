@@ -51,6 +51,7 @@ public class ActivityTrackerMain {
 //        ActivityRepository activityRepository = new ActivityRepository(dataSource);
 
         activityTrackerMain.saveActivity(dataSource,activity);
+        System.out.println(activityTrackerMain.findActivityById(1,dataSource));
         //activityTrackerMain.saveActivities(dataSource,activities);
 //        List<Activity> activitiesFromDb = activityTrackerMain.listActivities(dataSource);
 //        for (Activity actual : activitiesFromDb) {

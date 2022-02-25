@@ -2,6 +2,8 @@ package activitytracker;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,18 +95,18 @@ public class ActivityRepository {
         }
     }
 
-    public void saveActivityAndSaveTrackpoints(Activity activity){
-        try (Connection conn = dataSource.getConnection()){
+    public void saveActivityAndSaveTrackpoints(Activity activity) {
+        try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
             try {
-                long activityId = saveActivityAndReturnGeneratedKey(activity,conn);
-                saveTrackpoints(activityId,activity,conn);
+                long activityId = saveActivityAndReturnGeneratedKey(activity, conn);
+                saveTrackpoints(activityId, activity, conn);
                 conn.commit();
-            }catch (Exception exception){
+            } catch (Exception exception) {
                 conn.rollback();
-                throw new IllegalStateException("Transaction failed",exception);
+                throw new IllegalStateException("Transaction failed", exception);
             }
-        }catch (SQLException sqle){
+        } catch (SQLException sqle) {
             throw new IllegalStateException("Cannot connect", sqle);
         }
     }
@@ -119,11 +121,70 @@ public class ActivityRepository {
                 }
                 throw new IllegalStateException("Cannot find Activity with id: " + id);
             }
-
         } catch (SQLException sqle) {
             throw new IllegalStateException("Cannot query Activity with id: " + id, sqle);
         }
     }
+
+    public Activity findActivityWithTrackpointsById(long id) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement prepStmt = conn.prepareStatement("select * from activities where id=?")) {
+            prepStmt.setLong(1, id);
+            return createActivityById(id,prepStmt,conn);
+
+        } catch (SQLException sqle) {
+            throw new IllegalStateException("Cannot find activity with id: "+id, sqle);
+        }
+
+    }
+
+    private Activity createActivityById(long id, PreparedStatement prepStmt, Connection conn) throws SQLException {
+        try (ResultSet rs = prepStmt.executeQuery()) {
+            if (rs.next()) {
+                LocalDateTime startTime = rs.getTimestamp("start_time").toLocalDateTime();
+                String description = rs.getString("activity_desc");
+                Type type = Type.valueOf(rs.getString("activity_type"));
+                List<TrackPoint> trackpoints = getAndAddTrackpointsToList(id, conn);
+                return new Activity(id,startTime,description,type,trackpoints);
+            }
+        }
+
+        throw new IllegalStateException("Cannot create activity");
+    }
+
+
+    private List<TrackPoint> getAndAddTrackpointsToList(long id, Connection conn) {
+        try (PreparedStatement prepStmt = conn.prepareStatement("select * from track_point where id=?")) {
+            prepStmt.setLong(1, id);
+            return getTrackpointsFromResultset(prepStmt);
+
+        } catch (SQLException sqle) {
+            throw new IllegalStateException("Cannot get trackpoints",sqle);
+        }
+
+    }
+
+    private List<TrackPoint> getTrackpointsFromResultset(PreparedStatement prepStmt) {
+        List<TrackPoint> trackpoints = new ArrayList<>();
+        try (ResultSet rs = prepStmt.executeQuery()) {
+            while (rs.next()) {
+                trackpoints.add(createTrackpoint(rs));
+            }
+        } catch (SQLException sqle) {
+            throw new IllegalStateException("Cannot get trackpoints", sqle);
+        }
+        return trackpoints;
+    }
+
+
+    private TrackPoint createTrackpoint(ResultSet rs) throws SQLException {
+        LocalDate time = rs.getDate("tp_time").toLocalDate();
+        double lat = rs.getDouble("lat");
+        double lon = rs.getDouble("lon");
+
+        return new TrackPoint(time, lat, lon);
+    }
+
 
     public List<Activity> listActivities() {
         List<Activity> activities = new ArrayList<>();
