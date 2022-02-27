@@ -30,7 +30,6 @@ class ActivityRepositoryTest {
 
         repository = new ActivityRepository(dataSource);
 
-
         Activity activity = new Activity(LocalDateTime.of(2021, 8, 14, 18, 00, 00),
                 "bringazas", ActivityType.BIKING);
 
@@ -66,7 +65,6 @@ class ActivityRepositoryTest {
     @Test
     void findActivityByIdShouldThrowExeption() {
         assertThrows(Exception.class, () -> repository.findActivityById(7));
-
     }
 
     @Test
@@ -84,6 +82,7 @@ class ActivityRepositoryTest {
         assertEquals(6, expected);
 
     }
+
     @Test
     void saveTrackPointsTest() {
         TrackPoint trackPoint1 = new TrackPoint(LocalDate.of(2021, 2, 24), 47.2181020, 18.5411940);
@@ -91,7 +90,7 @@ class ActivityRepositoryTest {
         TrackPoint trackPoint3 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302470, 18.5472280);
         TrackPoint trackPoint4 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302550, 18.5472310);
         TrackPoint trackPoint5 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302552, 18.5472312);
-        List<TrackPoint> trackpoints = Arrays.asList(trackPoint1, trackPoint2, trackPoint3,trackPoint4, trackPoint5);
+        List<TrackPoint> trackpoints = Arrays.asList(trackPoint1, trackPoint2, trackPoint3, trackPoint4, trackPoint5);
         Activity activityWithTrackpoints = new Activity(LocalDateTime.of(2020, 12, 14, 15, 30), "laza délutáni futás", ActivityType.RUNNING, trackpoints);
 
         repository.saveActivityWithTrackpoints(activityWithTrackpoints);
@@ -106,14 +105,13 @@ class ActivityRepositoryTest {
     void saveActivitywithTrackPointsSomethingIsWrongTest() {
         TrackPoint trackPoint1 = new TrackPoint(LocalDate.of(2021, 2, 24), 47.2181020, 18.5411940);
         TrackPoint trackPoint2 = new TrackPoint(LocalDate.of(2021, 2, 24), 47.2181230, 18.5411780);
-        TrackPoint trackPoint3 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302470, 15238.5472280);
-        TrackPoint trackPoint4 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302550, 18.5472310);
+        TrackPoint trackPoint3 = new TrackPoint(LocalDate.of(2020, 12, 14), 47.2302470, 18.5472280);
+        TrackPoint trackPoint4 = new TrackPoint(LocalDate.of(2020, 12, 14), 470.2302550, 18.5472310);
         List<TrackPoint> trackpoints = Arrays.asList(trackPoint1, trackPoint2, trackPoint3, trackPoint4);
         Activity activity = new Activity(LocalDateTime.of(2020, 12, 14, 15, 30), "laza délutáni futás", ActivityType.RUNNING, trackpoints);
 
-        Exception ex = assertThrows(Exception.class, () -> repository.saveActivityWithTrackpoints(activity));
-
-
+        Exception exception = assertThrows(Exception.class, () -> repository.saveActivityWithTrackpoints(activity));
+        assertEquals("Not suitable values for latitude or longitude!", exception.getMessage());
 
     }
 
